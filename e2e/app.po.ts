@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class GaoyuanLivePage {
+export class AngularDemoPage {
   navigateTo() {
     return browser.get('/');
   }

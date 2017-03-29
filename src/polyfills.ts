@@ -48,7 +48,9 @@ import 'core-js/es7/reflect';
 /** ALL Firefox browsers require the following to support `@angular/animation`. **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
-
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 /***************************************************************************************************
  * Zone JS is required by Angular itself.

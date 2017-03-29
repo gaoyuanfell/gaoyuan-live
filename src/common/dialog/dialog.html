@@ -1,0 +1,17 @@
+<div #container [style.display]="visibled ? 'block' : 'none'" [@ease]="visibled ? 'visible' : 'hidden'" [ngStyle]="style" [class]="styleClass" [style.width.px]="width" [style.height.px]="height" (mousedown)="moveOnTop()">
+    <div (mousedown)="initDrag($event)" (mouseup)="endDrag($event)">
+        <span *ngIf="header">{{header}}</span>
+        <span *ngIf="closable" (click)="hide($event)">close</span>
+    </div>
+
+    <div #content>
+        <ng-content></ng-content>
+    </div>
+    <div>
+        <button #ok id="test" type="button">ok</button>
+        <button #no type="button">no</button>
+    </div>
+    <div *ngIf="resizable" (mousedown)="initResize($event)">
+        改变大小
+    </div>
+</div>

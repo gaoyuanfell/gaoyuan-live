@@ -1,0 +1,2 @@
+<input #rb type="radio" [attr.name]="name" [attr.value]="value" [checked]="checked" (change)="onChange($event)" (focus)="onFocus($event)" (blur)="onBlur($event)">
+<label (click)="select()" *ngIf="label">{{label}}</label>

@@ -1,10 +1,10 @@
-import { GaoyuanLivePage } from './app.po';
+import { AngularDemoPage } from './app.po';
 
-describe('gaoyuan-live App', () => {
-  let page: GaoyuanLivePage;
+describe('angular-demo App', () => {
+  let page: AngularDemoPage;
 
   beforeEach(() => {
-    page = new GaoyuanLivePage();
+    page = new AngularDemoPage();
   });
 
   it('should display message saying app works', () => {

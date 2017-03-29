@@ -1,0 +1,2 @@
+<input #cb type="checkbox" [name]="name" [value]="value" [checked]="checked" (change)="handleChange($event)" [disabled]="disabled">
+<label (click)="onClick($event,cb,true)" *ngIf="label">{{label}}</label>
