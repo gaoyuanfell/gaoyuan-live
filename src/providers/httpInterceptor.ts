@@ -32,6 +32,7 @@ export class HttpXHRBackend extends XHRBackend {
     }
 
     createConnection(request: Request): XHRConnection {
+        request.headers.append("X-Token","123123");
         let xhrConnection = super.createConnection(request);
         xhrConnection.response = xhrConnection.response.catch((error) => {
             return Observable.throw(error || "Server Error");

@@ -10,11 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 /*拦截器*/
 import { Interceptor } from '../providers/Interceptor';
 import pipe from '../pipe/pipe';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ...pipe
+        ...pipe,
+        UserComponent
     ],
     imports: [
         BrowserAnimationsModule,
