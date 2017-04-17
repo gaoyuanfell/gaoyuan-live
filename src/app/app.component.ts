@@ -9,15 +9,14 @@ import { Component, Renderer } from '@angular/core';
 export class AppComponent {
     constructor(private renderer:Renderer,private http:Http){
         renderer.listenGlobal('window','load',(event:Event) => {
-            console.info('ok')
-            this.http.post("http://localhost:8082/user/findPage.htm",{}).subscribe( (data) => {
-                console.info(data);
-            } )
+            // this.http.post("http://localhost:8082/user/findPage.htm",{}).subscribe( (data) => {
+            //     console.info(data);
+            // } )
         })
     }
     search:any;
-    test:any = Date.now()
-    date:any = Date.now()
+    test:Date = new Date();
+    date:Number = Date.now();
     currentHero:any = {};
     isActive(e){
         console.info(e)
