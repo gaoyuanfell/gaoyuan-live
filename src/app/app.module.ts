@@ -14,7 +14,7 @@ import { UserComponent } from './user/user.component';
 
 //组件
 import { MapModule } from './map/map.module';
-// import { MapComponent } from './map/map.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
     declarations: [
