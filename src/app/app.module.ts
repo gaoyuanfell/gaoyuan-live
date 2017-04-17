@@ -12,24 +12,30 @@ import { Interceptor } from '../providers/Interceptor';
 import pipe from '../pipe/pipe';
 import { UserComponent } from './user/user.component';
 
+//组件
+import { MapModule } from './map/map.module';
+// import { MapComponent } from './map/map.component';
+
 @NgModule({
     declarations: [
         AppComponent,
         ...pipe,
-        UserComponent
+        UserComponent,
+        // MapComponent
     ],
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
         HttpModule,
-        AppRoutingModule
+        AppRoutingModule,
+        MapModule
     ],
     providers: [
         ...Interceptor,
         { provide: APP_BASE_HREF, useValue: '/' },
     ],
     bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

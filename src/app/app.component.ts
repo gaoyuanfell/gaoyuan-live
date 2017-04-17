@@ -15,8 +15,8 @@ export class AppComponent {
         })
     }
     search:any;
-    test:any = Date.now()
-    date:any = Date.now()
+    test:Date = new Date();
+    date:Number = Date.now();
     currentHero:any = {};
     isActive(e){
         console.info(e)
