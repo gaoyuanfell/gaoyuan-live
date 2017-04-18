@@ -16,8 +16,9 @@ export class UserComponent implements OnInit {
     }
 
     loginSubmit() {
-        this.http.post('http://localhost:8082/user/login.htm',this.user).subscribe( (data) => {
+        this.http.post('http://localhost:8082/user/login.htm',this.user).subscribe( (data:any) => {
             console.info(data)
+            data.doc && window.localStorage.setItem("user",JSON.stringify(data.doc));
         } )
     }
 
@@ -25,6 +26,19 @@ export class UserComponent implements OnInit {
         this.http.post('http://localhost:8082/user/insert.htm',this.user).subscribe( (data) => {
             console.info(data)
         } )
+    }
+
+    logoutSubmit(){
+        let u = window.localStorage.getItem("user");
+        if(u){
+            let id = JSON.parse(u).id;
+            this.http.post('http://localhost:8082/user/logout.htm',{id:id}).subscribe( (data) => {
+                console.info(data)
+                window.localStorage.removeItem("user")
+                window.localStorage.removeItem("X-Token")
+            } )
+        }
+
     }
 
 }
