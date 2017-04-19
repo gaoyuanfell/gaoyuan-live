@@ -15,20 +15,41 @@
         <label class="col-2">用户：</label>
         <div class="col-10">
             <select [(ngModel)]="line.userId" name="userId" placeholder="用户">
-                <option *ngFor="let user of userList" [value]="user.id">
+                <option *ngFor="let user of userList; count as count; index as index" [value]="user.id">
                     {{user.user}}
                 </option>
             </select>
         </div>
     </div>
 
-    <div class="btn-group" role="group">
-        <button type="button" class="btn btn-secondary" (click)="addPraised()">点赞 &nbsp; 1</button>
-        <button type="button" class="btn btn-secondary" (click)="addRepeat()">评论 &nbsp; 2</button>
-        <button type="button" class="btn btn-secondary" (click)="addForward()">分享 &nbsp; 3</button>
-    </div>
-
     <button type="button" class="btn btn-primary" (click)="go()">GO</button>
 
     <button type="button" class="btn btn-primary" (click)="addLineSubmit()">提&emsp;交</button>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>标题</th>
+            <th>点赞</th>
+            <th>评论</th>
+            <th>分享</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let line of lineList">
+            <td>{{line.id}}</td>
+            <td>{{line.title}}</td>
+            <td>{{line.praised | number}}</td>
+            <td>{{line.repeat | number}}</td>
+            <td>{{line.forward | number}}</td>
+            <td>
+                <a class="badge badge-pill badge-default" (click)="go(line.id)">详情</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
 </form>

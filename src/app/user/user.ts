@@ -1,9 +1,9 @@
 export interface User {
-    id?: Number
-    userDetailId?: Number
-    user?: String
-    password?: String
-    email?: String
-    phone?: String
-    nickName?: String
+    id?: number
+    userDetailId?: number
+    user?: string
+    password?: string
+    email?: string
+    phone?: string
+    nickName?: string
 }

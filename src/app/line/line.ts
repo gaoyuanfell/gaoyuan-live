@@ -1,10 +1,10 @@
 export interface Line {
-    id?: Number
-    userId?: Number
-    title?: String
-    introduce?: String
-    praised?: Number
-    repeat?: Number
-    forward?: Number
-    privacy?: Number
+    id?: number
+    userId?: number
+    title?: string
+    introduce?: string
+    praised?: number
+    repeat?: number
+    forward?: number
+    privacy?: number
 }

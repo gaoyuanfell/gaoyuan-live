@@ -1,15 +1,16 @@
 <div class="row">
     <div class="col-12">
         <button class="btn btn-secondary" (click)="back()">返&nbsp;回</button>
+        <!--<button class="btn btn-secondary" (click)="stop()">停&nbsp;止</button>-->
     </div>
 </div>
 <div class="card">
-    <!--<img class="card-img-top" src="">-->
+    <img class="card-img-top" [src]>
     <div class="card-block">
         <h4 class="card-title">{{line.title}}</h4>
         <p class="card-text">{{line.introduce}}</p>
-        <span class="badge badge-pill badge-default">点&nbsp;赞</span>
-        <span class="badge badge-pill badge-primary">评&nbsp;论</span>
-        <span class="badge badge-pill badge-success">分&nbsp;享</span>
+        <a class="badge badge-pill badge-default" (click)="addPraised(line.id)">点&nbsp;赞 {{line.praised}}</a>
+        <a class="badge badge-pill badge-primary" (click)="addRepeat(line.id)">评&nbsp;论 {{line.repeat}}</a>
+        <a class="badge badge-pill badge-success" (click)="addForward(line.id)">分&nbsp;享 {{line.forward}}</a>
     </div>
 </div>
