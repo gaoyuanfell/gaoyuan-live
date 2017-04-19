@@ -2,7 +2,21 @@
 
 </header>
 <section class="root-bg">
-    <router-outlet></router-outlet>
+    <div class="row">
+        <div class="col-2">
+            <ul class="list-group">
+                <li class="list-group-item" routerLink="/map">map</li>
+                <li class="list-group-item" routerLink="/user">user</li>
+                <li class="list-group-item" routerLink="/line">line</li>
+            </ul>
+        </div>
+        <div class="col-9">
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+
 </section>
 
 <footer>

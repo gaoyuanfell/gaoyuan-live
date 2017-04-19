@@ -1,0 +1,34 @@
+<form #addLineForm="ngForm">
+    <div class="form-group row">
+        <label class="col-2 col-form-label">标题：</label>
+        <div class="col-10">
+            <input class="form-control" type="text" placeholder="标题" [(ngModel)]="line.title" name="title">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">描述：</label>
+        <div class="col-10">
+            <textarea class="form-control" placeholder="描述" [(ngModel)]="line.introduce" name="introduce"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2">用户：</label>
+        <div class="col-10">
+            <select [(ngModel)]="line.userId" name="userId" placeholder="用户">
+                <option *ngFor="let user of userList" [value]="user.id">
+                    {{user.user}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-secondary" (click)="addPraised()">点赞 &nbsp; 1</button>
+        <button type="button" class="btn btn-secondary" (click)="addRepeat()">评论 &nbsp; 2</button>
+        <button type="button" class="btn btn-secondary" (click)="addForward()">分享 &nbsp; 3</button>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="go()">GO</button>
+
+    <button type="button" class="btn btn-primary" (click)="addLineSubmit()">提&emsp;交</button>
+</form>
