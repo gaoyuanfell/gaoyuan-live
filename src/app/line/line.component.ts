@@ -56,5 +56,4 @@ export class LineComponent implements OnInit {
         })
     }
 
-
 }
