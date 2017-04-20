@@ -22,18 +22,17 @@ export class LineDetailComponent implements OnInit {
     constructor(private route: ActivatedRoute, private router: Router, private http: Http) { }
 
     ngOnInit() {
-        this.route.params.subscribe((data) => {
-            console.info(data)
-            this.lineId = data.id;
-            this.getOne(data.id);
-            this.getCommentList(data.id);
-        })
         let user = window.localStorage.getItem("user");
         if (user) {
             this.user = JSON.parse(user);
             this.userId = this.user.id;
         }
-        this.getComment(1)
+        this.route.params.subscribe((data) => {
+            console.info(data);
+            this.lineId = data.id;
+            this.getOne(data.id);
+            this.userId && this.getCommentList(data.id,this.userId);
+        })
     }
 
     back() {
@@ -52,20 +51,12 @@ export class LineDetailComponent implements OnInit {
         })
     }
 
-    getComment(id) {
-        this.http.post('/comment/findOne.htm', { id: id }).subscribe((data: Result<Page<Comment>>) => {
-            if (data.code == 200) {
-                console.info(data);
-            }
-        })
-    }
-
     /**
      * 获取line下面的评论
-     * @param id
+     * @param lineId
      */
-    getCommentList(id) {
-        this.http.post('/comment/findPage.htm', { lineId: id }).subscribe((data: Result<Page<Comment>>) => {
+    getCommentList(lineId,userId) {
+        this.http.post('/comment/findPage.htm', { lineId: lineId,userId:userId }).subscribe((data: Result<Page<Comment>>) => {
             if (data.code == 200) {
                 this.commentList = data.doc.list
             }
