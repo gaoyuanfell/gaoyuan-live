@@ -10,7 +10,31 @@
         <h4 class="card-title">{{line.title}}</h4>
         <p class="card-text">{{line.introduce}}</p>
         <a class="badge badge-pill badge-default" (click)="addPraised(line.id)">点&nbsp;赞 {{line.praised}}</a>
-        <a class="badge badge-pill badge-primary" (click)="addRepeat(line.id)">评&nbsp;论 {{line.repeat}}</a>
+        <a class="badge badge-pill badge-primary">评&nbsp;论 {{line.review}}</a>
         <a class="badge badge-pill badge-success" (click)="addForward(line.id)">分&nbsp;享 {{line.forward}}</a>
     </div>
 </div>
+<div class="row">
+    <div class="col-12">
+        <textarea class="form-control" [(ngModel)]="comment.context" placeholder="评论"></textarea>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-secondary" (click)="publicReview()">提&nbsp;交</button>
+    </div>
+</div>
+
+<ul class="list-group">
+    <li *ngFor="let comment of commentList" class="list-group-item justify-content-between">
+        <div class="col-2">
+            <img [src]="comment.user.url" class="img-thumbnail">
+        </div>
+        <div class="col-6">
+            {{comment.context}}
+        </div>
+        <div class="col-4">
+            <a class="badge badge-pill badge-default" (click)="addPraisedComment(comment)">点&nbsp;赞 {{comment.praised}}</a>
+            <a class="badge badge-pill badge-primary">评&nbsp;论 {{comment.review}}</a>
+            <a class="badge badge-pill badge-success" (click)="addForwardComment(comment)">分&nbsp;享 {{comment.forward}}</a>
+        </div>
+    </li>
+</ul>

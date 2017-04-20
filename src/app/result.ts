@@ -1,28 +1,13 @@
-interface Page<T> {
+export interface Page<T> {
     pageIndex?: number
     pageStart?: number
     totalPage?: number
     totalCount?: number
-    list?: Array<T>
+    list?: T[]
 }
 
-
-
-interface Result<T> {
+export interface Result<T> {
     code?: number
-    doc?: T | Array<T> | Page<T> | any
+    doc?: T
     msg?: string
 }
-
-interface Result1 {
-    code?: number
-    doc?: any
-    msg?: string
-}
-
-export {
-    Result,
-    Result1
-}
-
-// export declare type Result<T> = Result1<T> | Result2<T> | any

@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Result } from './../result';
-import { User } from '../user/user';
+import { Result, Page } from './../result';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
-import { Line } from './line';
+import { Line } from './module';
+import { User } from './../user/module';
 
 @Component({
     selector: 'app-line',
@@ -15,8 +15,8 @@ export class LineComponent implements OnInit {
     line: Line = {
 
     };
-    userList: Array<User> = [];
-    lineList: Array<Line> = [];
+    userList: User[] = [];
+    lineList: Line[] = [];
 
     constructor(private http: Http, private router:Router) { }
 
@@ -30,7 +30,7 @@ export class LineComponent implements OnInit {
     }
 
     getUserList(){
-        this.http.post('http://localhost:8082/user/findList.htm', {}).subscribe((data: Result<User>) => {
+        this.http.post('/user/findList.htm', {}).subscribe((data: Result<User[]>) => {
             if (data.code == 200) {
                 this.userList = data.doc
             }
@@ -38,21 +38,21 @@ export class LineComponent implements OnInit {
     }
 
     getLineList(){
-        this.http.post('http://localhost:8082/line/findPage.htm', {}).subscribe((data: Result<Line>) => {
+        this.http.post('/line/findPage.htm', {}).subscribe((data: Result<Page<Line>>) => {
             if (data.code == 200) {
-                this.lineList = data.doc;
+                this.lineList = data.doc.list;
             }
         })
     }
 
     addLineSubmit() {
-        this.http.post('http://localhost:8082/line/insert.htm', this.line).subscribe((data: Result<Line>) => {
+        this.http.post('/line/insert.htm', this.line).subscribe((data: Result<Line>) => {
             if(data.code == 200){
                 this.line.id = data.doc.id
                 this.lineList.push(this.line);
                 this.line = {};
             }
-            console.info(data)
+            // console.info(data)
         })
     }
 

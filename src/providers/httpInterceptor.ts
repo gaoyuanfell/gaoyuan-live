@@ -32,6 +32,8 @@ export class HttpXHRBackend extends XHRBackend {
     }
 
     createConnection(request: Request): XHRConnection {
+        let baseUrl = 'http://localhost:8082';
+        request.url = baseUrl + request.url;
         let token = window.localStorage.getItem("X-Token");
         token && request.headers.append("X-Token",token);
         let xhrConnection = super.createConnection(request);

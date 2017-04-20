@@ -9,7 +9,7 @@ import { Component, Renderer } from '@angular/core';
 export class AppComponent {
     constructor(private renderer:Renderer,private http:Http){
         renderer.listenGlobal('window','load',(event:Event) => {
-            // this.http.post("http://localhost:8082/user/findPage.htm",{}).subscribe( (data) => {
+            // this.http.post("/user/findPage.htm",{}).subscribe( (data) => {
             //     console.info(data);
             // } )
         })

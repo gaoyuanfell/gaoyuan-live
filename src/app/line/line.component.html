@@ -15,7 +15,7 @@
         <label class="col-2">用户：</label>
         <div class="col-10">
             <select [(ngModel)]="line.userId" name="userId" placeholder="用户">
-                <option *ngFor="let user of userList; count as count; index as index" [value]="user.id">
+                <option *ngFor="let user of userList" [value]="user.id">
                     {{user.user}}
                 </option>
             </select>
@@ -42,7 +42,7 @@
             <td>{{line.id}}</td>
             <td>{{line.title}}</td>
             <td>{{line.praised | number}}</td>
-            <td>{{line.repeat | number}}</td>
+            <td>{{line.review | number}}</td>
             <td>{{line.forward | number}}</td>
             <td>
                 <a class="badge badge-pill badge-default" (click)="go(line.id)">详情</a>
@@ -50,6 +50,4 @@
         </tr>
         </tbody>
     </table>
-
-
 </form>

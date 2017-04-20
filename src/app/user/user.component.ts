@@ -1,7 +1,7 @@
 import { Result } from './../result';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
-import { User } from './user';
+import { User } from './module';
 
 @Component({
     selector: 'app-user',
@@ -17,14 +17,14 @@ export class UserComponent implements OnInit {
     }
 
     loginSubmit() {
-        this.http.post('http://localhost:8082/user/login.htm',this.user).subscribe( (data:Result<any>) => {
+        this.http.post('/user/login.htm',this.user).subscribe( (data:Result<any>) => {
             console.info(data)
             data.doc && window.localStorage.setItem("user",JSON.stringify(data.doc));
         } )
     }
 
     registerSubmit(){
-        this.http.post('http://localhost:8082/user/insert.htm',this.user).subscribe( (data:Result<any>) => {
+        this.http.post('/user/insert.htm',this.user).subscribe( (data:Result<any>) => {
             console.info(data)
         } )
     }
@@ -33,8 +33,8 @@ export class UserComponent implements OnInit {
         let u = window.localStorage.getItem("user");
         if(u){
             let id = JSON.parse(u).id;
-            this.http.post('http://localhost:8082/user/logout.htm',{id:id}).subscribe( (data:Result<any>) => {
-                console.info(data)
+            this.http.post('/user/logout.htm',{id:id}).subscribe( (data:Result<any>) => {
+                console.info(data);
                 window.localStorage.removeItem("user")
                 window.localStorage.removeItem("X-Token")
             } )
