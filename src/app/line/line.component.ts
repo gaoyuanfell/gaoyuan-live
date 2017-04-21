@@ -1,5 +1,5 @@
 import { User, Line, Result, Page } from './../module';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
@@ -14,18 +14,19 @@ export class LineComponent implements OnInit {
     userList: User[] = [];
     lineList: Line[] = [];
 
-    constructor(private http: Http, private router:Router) { }
+    constructor(private http: Http, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.getUserList();
         this.getLineList();
     }
 
-    go(id){
-        this.router.navigate(['/line',id])
+    go(id, lineId) {
+        // console.info(lineId)
+        this.router.navigate(['/line', id], { queryParams: { lineId: lineId, id: id } })
     }
 
-    getUserList(){
+    getUserList() {
         this.http.post('/user/findList.htm', {}).subscribe((data: Result<User[]>) => {
             if (data.code == 200) {
                 this.userList = data.doc
@@ -33,7 +34,7 @@ export class LineComponent implements OnInit {
         })
     }
 
-    getLineList(){
+    getLineList() {
         this.http.post('/line/findPage.htm', {}).subscribe((data: Result<Page<Line>>) => {
             if (data.code == 200) {
                 this.lineList = data.doc.list;
@@ -43,7 +44,7 @@ export class LineComponent implements OnInit {
 
     addLineSubmit() {
         this.http.post('/line/insert.htm', this.line).subscribe((data: Result<Line>) => {
-            if(data.code == 200){
+            if (data.code == 200) {
                 this.line.id = data.doc.id
                 this.lineList.push(this.line);
                 this.line = {};

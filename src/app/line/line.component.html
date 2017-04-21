@@ -40,12 +40,12 @@
         <tbody>
         <tr *ngFor="let line of lineList">
             <td>{{line.id}}</td>
-            <td>{{line.title}}</td>
+            <td>{{line.title || line.context}}</td>
             <td>{{line.praised | number}}</td>
             <td>{{line.review | number}}</td>
             <td>{{line.forward | number}}</td>
             <td>
-                <a class="badge badge-pill badge-default" (click)="go(line.id)">详情</a>
+                <a class="badge badge-pill badge-default" (click)="go(line.id,line.lineId)">详情</a>
             </td>
         </tr>
         </tbody>

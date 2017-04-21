@@ -1,7 +1,10 @@
 import { User, Line, Result, Page, Comment, LineSend } from './../../module';
 import { Http } from '@angular/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+import { Scheduler } from 'rxjs/Scheduler';
 
 @Component({
     selector: 'app-line-detail',
@@ -28,12 +31,22 @@ export class LineDetailComponent implements OnInit {
             this.user = JSON.parse(user);
             this.userId = this.user.id;
         }
-        this.route.params.subscribe((data) => {
+        this.route.data.subscribe( data => {
+            console.info(data);
+        } )
+        this.route.queryParams.subscribe( data => {
+            let lineId = data.lineId;
+            let id = data.id;
+            if(lineId != 0){
+                this.getSendOne(id);
+            }else{
+                this.getOne(data.id);
+            }
             console.info(data);
             this.lineId = data.id;
-            this.getOne(data.id);
-            this.getCommentList(data.id);
-        })
+
+            this.getCommentList(id);
+        } )
     }
 
     back() {
@@ -59,13 +72,21 @@ export class LineDetailComponent implements OnInit {
         this.http.post('/comment/findPage.htm', { lineId: lineId, ...this.page }).subscribe((data: Result<Page<Comment>>) => {
             console.info(data)
             if (data.code == 200) {
-                this.commentList = data.doc.list
+                this.commentList = data.doc.list;
             }
         })
     }
 
     getOne(id) {
         this.http.post('/line/findOneOfUser.htm', { id: id }).subscribe((data: Result<Line>) => {
+            if (data.code == 200) {
+                this.line = data.doc
+            }
+        })
+    }
+
+    getSendOne(id) {
+        this.http.post('/lineSend/findOneOfUser.htm', { id: id }).subscribe((data: Result<LineSend>) => {
             if (data.code == 200) {
                 this.line = data.doc;
             }

@@ -12,6 +12,7 @@ const routes: Routes = [
     {
         path: 'line/:id',
         component: LineDetailComponent,
+        data:{as:12}
     }
 ];
 
