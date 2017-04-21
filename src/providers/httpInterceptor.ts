@@ -21,6 +21,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
+import { baseUrl } from "config";
 
 export class HttpXHRBackend extends XHRBackend {
     constructor(
@@ -32,7 +33,6 @@ export class HttpXHRBackend extends XHRBackend {
     }
 
     createConnection(request: Request): XHRConnection {
-        let baseUrl = 'http://localhost:8082';
         request.url = baseUrl + request.url;
         let token = window.localStorage.getItem("X-Token");
         token && request.headers.append("X-Token",token);

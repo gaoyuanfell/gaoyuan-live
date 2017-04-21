@@ -1,7 +1,6 @@
-import { Result } from './../result';
+import { User, Result } from './../module';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
-import { User } from './module';
 
 @Component({
     selector: 'app-user',
@@ -39,7 +38,5 @@ export class UserComponent implements OnInit {
                 window.localStorage.removeItem("X-Token")
             } )
         }
-
     }
-
 }

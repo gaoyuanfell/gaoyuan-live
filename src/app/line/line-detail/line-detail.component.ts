@@ -1,7 +1,4 @@
-import { Page } from './../../result';
-import { User } from './../../user/module';
-import { Line, Comment } from './../module';
-import { Result } from '../../result';
+import { User, Line, Result, Page, Comment, LineSend } from './../../module';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -16,8 +13,12 @@ export class LineDetailComponent implements OnInit {
     lineId: number;
     userId: number;
     line: Line = {};
+    lineSend: LineSend = {};
     comment: Comment = {};
     commentList: Comment[] = [];
+    page: any = {
+        pageSize: 10
+    };
 
     constructor(private route: ActivatedRoute, private router: Router, private http: Http) { }
 
@@ -31,7 +32,7 @@ export class LineDetailComponent implements OnInit {
             console.info(data);
             this.lineId = data.id;
             this.getOne(data.id);
-            this.userId && this.getCommentList(data.id,this.userId);
+            this.getCommentList(data.id);
         })
     }
 
@@ -43,7 +44,6 @@ export class LineDetailComponent implements OnInit {
         this.comment.lineId = this.lineId;
         this.comment.userId = this.user.id;
         this.http.post('/comment/insert.htm', this.comment).subscribe((data: Result<Comment>) => {
-            console.info(data);
             if (data.code == 200) {
                 this.line.review++;
                 this.comment = {};
@@ -55,8 +55,9 @@ export class LineDetailComponent implements OnInit {
      * 获取line下面的评论
      * @param lineId
      */
-    getCommentList(lineId,userId) {
-        this.http.post('/comment/findPage.htm', { lineId: lineId,userId:userId }).subscribe((data: Result<Page<Comment>>) => {
+    getCommentList(lineId) {
+        this.http.post('/comment/findPage.htm', { lineId: lineId, ...this.page }).subscribe((data: Result<Page<Comment>>) => {
+            console.info(data)
             if (data.code == 200) {
                 this.commentList = data.doc.list
             }
@@ -64,7 +65,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     getOne(id) {
-        this.http.post('/line/findOne.htm', { id: id }).subscribe((data: Result<Line>) => {
+        this.http.post('/line/findOneOfUser.htm', { id: id }).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
                 this.line = data.doc;
             }
@@ -74,25 +75,36 @@ export class LineDetailComponent implements OnInit {
     addPraised(id) {
         this.http.post('/line/addPraised.htm', { id: id }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
-                ++this.line.praised
+                if (data.doc) {
+                    this.line.isPraised = 0;
+                    --this.line.praised
+                } else {
+                    this.line.isPraised = 1;
+                    ++this.line.praised
+                }
             }
         })
     }
 
-    addForward(id) {
-        this.http.post('/line/addForward.htm', { id: id }).subscribe((data: Result<any>) => {
+    //分享
+    addForward(lineId) {
+        this.lineSend.lineId = lineId
+        this.http.post('/lineSend/insert.htm', this.lineSend).subscribe((data: Result<any>) => {
             if (data.code == 200) {
-                ++this.line.forward
+
             }
+            console.info(data);
         })
     }
 
     addPraisedComment(comment) {
         this.http.post('/comment/addPraised.htm', { id: comment.id, userId: this.userId }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
-                if(data.doc){
+                if (data.doc) {
+                    comment.isPraised = 0;
                     --comment.praised
-                }else{
+                } else {
+                    comment.isPraised = 1;
                     ++comment.praised
                 }
             }
@@ -102,7 +114,13 @@ export class LineDetailComponent implements OnInit {
     addForwardComment(comment) {
         this.http.post('/comment/addForward.htm', { id: comment.id, userId: this.userId }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
-                ++comment.forward
+                if (data.doc) {
+                    comment.isForward = 0;
+                    --comment.forward
+                } else {
+                    comment.isForward = 1;
+                    ++comment.forward
+                }
             }
         })
     }

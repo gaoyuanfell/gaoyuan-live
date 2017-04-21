@@ -1,10 +1,8 @@
+import { User, Line, Result, Page } from './../module';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Result, Page } from './../result';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
-import { Line } from './module';
-import { User } from './../user/module';
 
 @Component({
     selector: 'app-line',
@@ -12,9 +10,7 @@ import { User } from './../user/module';
     styleUrls: ['./line.component.scss']
 })
 export class LineComponent implements OnInit {
-    line: Line = {
-
-    };
+    line: Line = {};
     userList: User[] = [];
     lineList: Line[] = [];
 

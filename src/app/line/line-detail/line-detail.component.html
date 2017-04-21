@@ -8,9 +8,10 @@
     <div class="card-block">
         <h4 class="card-title">{{line.title}}</h4>
         <p class="card-text">{{line.introduce}}</p>
-        <a class="badge badge-pill badge-default" (click)="addPraised(line.id)">点&nbsp;赞 {{line.praised}}</a>
+        <a class="badge badge-pill" [ngClass]="{'badge-default':!line.isPraised,'badge-success':line.isPraised}" (click)="addPraised(line.id)">点&nbsp;赞 {{line.praised}}</a>
         <a class="badge badge-pill badge-primary">评&nbsp;论 {{line.review}}</a>
-        <a class="badge badge-pill badge-success" (click)="addForward(line.id)">分&nbsp;享 {{line.forward}}</a>
+        <a class="badge badge-pill" [ngClass]="{'badge-default':!line.isForward,'badge-success':line.isForward}">分&nbsp;享 {{line.forward}}</a>
+        <a class="badge badge-pill" data-toggle="modal" data-target="#line_forward">分&nbsp;享</a>
     </div>
 </div>
 <div class="row">
@@ -24,16 +25,42 @@
 
 <ul class="list-group">
     <li *ngFor="let comment of commentList" class="list-group-item justify-content-between">
-        <div class="col-2">
+        <div class="col-3">
             <img [src]="comment.user.url" class="img-thumbnail">
+            <span>{{comment.user.nickName}}</span>
+            <span>{{comment.user.user}}</span>
+            <span>{{comment.createDate | date:"yyyy-MM-dd"}}</span>
+            <span>{{comment.createDate | date:"HH:mm:ss"}}</span>
         </div>
         <div class="col-6">
             {{comment.context}}
         </div>
-        <div class="col-4">
-            <a class="badge badge-pill badge-default" (click)="addPraisedComment(comment)">点&nbsp;赞 {{comment.praised}}</a>
-            <a class="badge badge-pill badge-primary">评&nbsp;论 {{comment.review}}</a>
-            <a class="badge badge-pill badge-success" (click)="addForwardComment(comment)">分&nbsp;享 {{comment.forward}}</a>
+        <div class="col-3">
+            <a class="badge badge-pill" [ngClass]="{'badge-default':!comment.isPraised,'badge-success':comment.isPraised}" (click)="addPraisedComment(comment)">点&nbsp;赞 {{comment.praised}}</a>
+            <a class="badge badge-pill badge-primary">回&nbsp;复{{comment.review}}</a>
+            <!--<a class="badge badge-pill" [ngClass]="{'badge-default':!comment.isForward,'badge-success':comment.isForward}" (click)="addForwardComment(comment)">分&nbsp;享 {{comment.forward}}</a>-->
         </div>
     </li>
 </ul>
+
+<div class="modal fade" id="line_forward" tabindex="-1" role="dialog" aria-labelledby="line_forward_title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="line_forward_title">内容转发</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">内容</label>
+                    <div class="col-10">
+                        <textarea name="context" [(ngModel)]="lineSend.context" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addForward(line.id)">转发</button>
+            </div>
+        </div>
+    </div>
+</div>
