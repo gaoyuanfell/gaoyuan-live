@@ -29,7 +29,7 @@ export class LineComponent implements OnInit {
     getUserList() {
         this.http.post('/user/findList.htm', {}).subscribe((data: Result<User[]>) => {
             if (data.code == 200) {
-                this.userList = data.doc
+                this.userList = data.doc;
             }
         })
     }

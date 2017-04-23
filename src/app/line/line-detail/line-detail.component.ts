@@ -12,8 +12,10 @@ import { Scheduler } from 'rxjs/Scheduler';
     styleUrls: ['./line-detail.component.scss']
 })
 export class LineDetailComponent implements OnInit {
+    context: string;
     user: User;
-    lineId: number;
+    lineId: number = 0;
+    lineSendId: number = 0;
     userId: number;
     line: Line = {};
     lineSend: LineSend = {};
@@ -31,22 +33,23 @@ export class LineDetailComponent implements OnInit {
             this.user = JSON.parse(user);
             this.userId = this.user.id;
         }
-        this.route.data.subscribe( data => {
-            console.info(data);
-        } )
-        this.route.queryParams.subscribe( data => {
+        // this.route.data.subscribe(data => {
+        //     console.info(data);
+        // })
+        this.route.queryParams.subscribe(data => {
+            console.info(data)
+            let body = { ...this.page };
             let lineId = data.lineId;
             let id = data.id;
-            if(lineId != 0){
+            if (lineId != 0) {
                 this.getSendOne(id);
-            }else{
-                this.getOne(data.id);
+                body.lineSendId = lineId;
+            } else {
+                this.getOne(id);
+                body.lineId = id
             }
-            console.info(data);
-            this.lineId = data.id;
-
-            this.getCommentList(id);
-        } )
+            this.getCommentList(body);
+        })
     }
 
     back() {
@@ -66,29 +69,31 @@ export class LineDetailComponent implements OnInit {
 
     /**
      * 获取line下面的评论
-     * @param lineId
+     * @param body
      */
-    getCommentList(lineId) {
-        this.http.post('/comment/findPage.htm', { lineId: lineId, ...this.page }).subscribe((data: Result<Page<Comment>>) => {
-            console.info(data)
+    getCommentList(body) {
+        this.http.post('/comment/findPage.htm', body).subscribe((data: Result<Page<Comment>>) => {
             if (data.code == 200) {
                 this.commentList = data.doc.list;
             }
         })
     }
 
-    getOne(id) {
+    getOne(id) {//lineId
         this.http.post('/line/findOneOfUser.htm', { id: id }).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
-                this.line = data.doc
+                this.line = data.doc;
+                this.lineId = id;
             }
         })
     }
 
-    getSendOne(id) {
+    getSendOne(id) {//lineSendId
         this.http.post('/lineSend/findOneOfUser.htm', { id: id }).subscribe((data: Result<LineSend>) => {
             if (data.code == 200) {
-                this.line = data.doc;
+                this.lineSend = data.doc;
+                this.line = data.doc.line;
+                this.lineSendId = id;
             }
         })
     }
@@ -98,7 +103,7 @@ export class LineDetailComponent implements OnInit {
             if (data.code == 200) {
                 if (data.doc) {
                     this.line.isPraised = 0;
-                    --this.line.praised
+                    --this.line.praised;
                 } else {
                     this.line.isPraised = 1;
                     ++this.line.praised
@@ -107,14 +112,30 @@ export class LineDetailComponent implements OnInit {
         })
     }
 
+    addPraisedSendLine(id) {
+        this.http.post('/lineSend/addPraised.htm', { id: id }).subscribe((data: Result<any>) => {
+            if (data.code == 200) {
+                if (data.doc) {
+                    this.lineSend.isPraised = 0;
+                    --this.lineSend.praised
+                } else {
+                    this.lineSend.isPraised = 1;
+                    ++this.lineSend.praised
+                }
+            }
+        })
+    }
+
     //分享
-    addForward(lineId) {
-        this.lineSend.lineId = lineId
-        this.http.post('/lineSend/insert.htm', this.lineSend).subscribe((data: Result<any>) => {
+    addForward() {
+        let body = {
+            lineId: this.lineId || this.lineSendId,
+            context: this.context,
+        }
+        this.http.post('/lineSend/insert.htm', body).subscribe((data: Result<any>) => {
             if (data.code == 200) {
 
             }
-            console.info(data);
         })
     }
 
@@ -127,20 +148,6 @@ export class LineDetailComponent implements OnInit {
                 } else {
                     comment.isPraised = 1;
                     ++comment.praised
-                }
-            }
-        })
-    }
-
-    addForwardComment(comment) {
-        this.http.post('/comment/addForward.htm', { id: comment.id, userId: this.userId }).subscribe((data: Result<any>) => {
-            if (data.code == 200) {
-                if (data.doc) {
-                    comment.isForward = 0;
-                    --comment.forward
-                } else {
-                    comment.isForward = 1;
-                    ++comment.forward
                 }
             }
         })

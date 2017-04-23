@@ -9,34 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
     user: User = {};
+    userList: User[] = [];
     constructor(private http: Http) { }
 
     ngOnInit() {
-
+        this.getUserList()
     }
 
     loginSubmit() {
-        this.http.post('/user/login.htm',this.user).subscribe( (data:Result<any>) => {
+        this.http.post('/user/login.htm', this.user).subscribe((data: Result<any>) => {
             console.info(data)
-            data.doc && window.localStorage.setItem("user",JSON.stringify(data.doc));
-        } )
+            data.doc && window.localStorage.setItem("user", JSON.stringify(data.doc));
+        })
     }
 
-    registerSubmit(){
-        this.http.post('/user/insert.htm',this.user).subscribe( (data:Result<any>) => {
+    registerSubmit() {
+        this.http.post('/user/insert.htm', this.user).subscribe((data: Result<any>) => {
             console.info(data)
-        } )
+        })
     }
 
-    logoutSubmit(){
+    logoutSubmit() {
         let u = window.localStorage.getItem("user");
-        if(u){
+        if (u) {
             let id = JSON.parse(u).id;
-            this.http.post('/user/logout.htm',{id:id}).subscribe( (data:Result<any>) => {
+            this.http.post('/user/logout.htm', { id: id }).subscribe((data: Result<any>) => {
                 console.info(data);
                 window.localStorage.removeItem("user")
                 window.localStorage.removeItem("X-Token")
-            } )
+            })
         }
+    }
+
+    getUserList() {
+        this.http.post('/user/findList.htm', {}).subscribe((data: Result<User[]>) => {
+            if (data.code == 200) {
+                this.userList = data.doc;
+            }
+        })
     }
 }

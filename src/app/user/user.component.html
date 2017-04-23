@@ -12,6 +12,7 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary">登&emsp;录</button>
+    <button type="button" class="btn btn-primary" (click)="logoutSubmit()">退&emsp;出</button>
 </form>
 
 <form #registerForm="ngForm" (submit)="registerSubmit()">
@@ -47,6 +48,28 @@
     </div>
     <button type="submit" class="btn btn-primary">注&emsp;册</button>
 </form>
-<div class="card">
-    <button type="button" class="btn btn-primary" (click)="logoutSubmit()">退&emsp;出</button>
-</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>头像</th>
+            <th>昵称</th>
+            <th>用户名</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userList">
+            <td>{{user.id}}</td>
+            <td>
+                <img width="50" height="50" [src]="user.url" class="img-thumbnail">
+            </td>
+            <td>{{user.nickName}}</td>
+            <td>{{user.user}}</td>
+            <td>
+                <a class="badge badge-pill badge-primary">修&nbsp;改</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

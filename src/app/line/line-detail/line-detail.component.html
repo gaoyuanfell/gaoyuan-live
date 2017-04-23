@@ -3,10 +3,10 @@
         <button class="btn btn-secondary" (click)="back()">返&nbsp;回</button>
     </div>
 </div>
-<div class="card">
+<div class="card" *ngIf="lineId != 0">
     <img class="card-img-top" [src]>
     <div class="card-block">
-        <h4 class="card-title">{{line.title || line.context}}</h4>
+        <h4 class="card-title">{{line.title}}</h4>
         <p class="card-text">{{line.introduce}}</p>
         <a class="badge badge-pill" [ngClass]="{'badge-default':!line.isPraised,'badge-success':line.isPraised}" (click)="addPraised(line.id)">点&nbsp;赞 {{line.praised}}</a>
         <a class="badge badge-pill badge-primary">评&nbsp;论 {{line.review}}</a>
@@ -14,6 +14,33 @@
         <a class="badge badge-pill" data-toggle="modal" data-target="#line_forward">分&nbsp;享</a>
     </div>
 </div>
+
+<div class="card" *ngIf="lineSendId != 0">
+    <img class="card-img-top" [src]>
+    <div class="card-block">
+        <h4 class="card-title">{{lineSend.context}}</h4>
+
+        <div class="card">
+            <img class="card-img-top" [src]>
+            <div class="card-block">
+                <h4 class="card-title">{{line.title}}</h4>
+                <p class="card-text">{{line.introduce}}</p>
+                <a class="badge badge-pill" [ngClass]="{'badge-default':!line.isPraised,'badge-success':line.isPraised}" (click)="addPraised(line.id)">点&nbsp;赞 {{line.praised}}</a>
+                <a class="badge badge-pill badge-primary">评&nbsp;论 {{line.review}}</a>
+                <a class="badge badge-pill" [ngClass]="{'badge-default':!line.isForward,'badge-success':line.isForward}">分&nbsp;享 {{line.forward}}</a>
+                <a class="badge badge-pill" data-toggle="modal" data-target="#line_forward">分&nbsp;享</a>
+            </div>
+        </div>
+
+        <p class="card-text">{{lineSend.introduce}}</p>
+        <a class="badge badge-pill" [ngClass]="{'badge-default':!lineSend.isPraised,'badge-success':lineSend.isPraised}" (click)="addPraisedSendLine(lineSend.id)">点&nbsp;赞 {{lineSend.praised}}</a>
+        <a class="badge badge-pill badge-primary">评&nbsp;论 {{lineSend.review}}</a>
+        <a class="badge badge-pill" [ngClass]="{'badge-default':!lineSend.isForward,'badge-success':lineSend.isForward}">分&nbsp;享 {{lineSend.forward}}</a>
+        <a class="badge badge-pill" data-toggle="modal" data-target="#line_forward">分&nbsp;享</a>
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-12">
         <textarea class="form-control" [(ngModel)]="comment.context" placeholder="评论"></textarea>
@@ -26,11 +53,15 @@
 <ul class="list-group">
     <li *ngFor="let comment of commentList" class="list-group-item justify-content-between">
         <div class="col-3">
-            <img [src]="comment.user.url" class="img-thumbnail">
-            <span>{{comment.user.nickName}}</span>
-            <span>{{comment.user.user}}</span>
-            <span>{{comment.createDate | date:"yyyy-MM-dd"}}</span>
-            <span>{{comment.createDate | date:"HH:mm:ss"}}</span>
+            <img width="60" height="60" [src]="comment.user.url" class="img-thumbnail">
+            <p>
+                <span>{{comment.user.nickName}}</span>
+                <span>{{comment.user.user}}</span>
+            </p>
+            <p>
+                <span>{{comment.createDate | date:"yyyy-MM-dd"}}</span>
+                <span>{{comment.createDate | date:"HH:mm:ss"}}</span>
+            </p>
         </div>
         <div class="col-6">
             {{comment.context}}
@@ -52,14 +83,14 @@
             </div>
             <div class="modal-body">
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-2 col-form-label">内容</label>
+                    <label class="col-2 col-form-label">内容</label>
                     <div class="col-10">
-                        <textarea name="context" [(ngModel)]="lineSend.context" class="form-control"></textarea>
+                        <textarea name="context" [(ngModel)]="context" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addForward(line.id)">转发</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addForward()">转发</button>
             </div>
         </div>
     </div>
