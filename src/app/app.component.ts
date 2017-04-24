@@ -19,6 +19,6 @@ export class AppComponent {
     date:Number = Date.now();
     currentHero:any = {};
     isActive(e){
-        console.info(e)
+        console.info(e);
     }
  }
