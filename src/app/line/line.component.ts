@@ -13,6 +13,9 @@ export class LineComponent implements OnInit {
     line: Line = {};
     userList: User[] = [];
     lineList: Line[] = [];
+    page: any = {
+        pageSize: 10
+    };
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) { }
 
@@ -35,7 +38,7 @@ export class LineComponent implements OnInit {
     }
 
     getLineList() {
-        this.http.post('/line/findPage.htm', {}).subscribe((data: Result<Page<Line>>) => {
+        this.http.post('/line/findPage.htm', {...this.page}).subscribe((data: Result<Page<Line>>) => {
             if (data.code == 200) {
                 this.lineList = data.doc.list;
             }

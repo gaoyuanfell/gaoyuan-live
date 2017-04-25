@@ -51,6 +51,7 @@ export interface LineSend {
     privacy?: number
     isPraised?: number
     isForward?: number
+    sort?: number
 }
 
 export interface Comment {

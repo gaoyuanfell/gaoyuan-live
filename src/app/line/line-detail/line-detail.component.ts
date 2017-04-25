@@ -14,6 +14,7 @@ import { Scheduler } from 'rxjs/Scheduler';
 export class LineDetailComponent implements OnInit {
     context: string;
     user: User;
+    id: number = 0;
     lineId: number = 0;
     lineSendId: number = 0;
     userId: number;
@@ -39,14 +40,15 @@ export class LineDetailComponent implements OnInit {
         this.route.queryParams.subscribe(data => {
             console.info(data)
             let body = { ...this.page };
-            let lineId = data.lineId;
-            let id = data.id;
+            let lineId = +data.lineId;
+            let id = +data.id;
+            this.id = lineId || id;
             if (lineId != 0) {
                 this.getSendOne(id);
                 body.lineSendId = lineId;
             } else {
                 this.getOne(id);
-                body.lineId = id
+                body.lineId = id;
             }
             this.getCommentList(body);
         })
@@ -106,7 +108,7 @@ export class LineDetailComponent implements OnInit {
                     --this.line.praised;
                 } else {
                     this.line.isPraised = 1;
-                    ++this.line.praised
+                    ++this.line.praised;
                 }
             }
         })
@@ -129,9 +131,11 @@ export class LineDetailComponent implements OnInit {
     //分享
     addForward() {
         let body = {
-            lineId: this.lineId || this.lineSendId,
             context: this.context,
-        }
+            lineId: this.id,
+            sort: this.lineSend.sort || 0,
+            lineSendId: this.lineSendId,
+        };
         this.http.post('/lineSend/insert.htm', body).subscribe((data: Result<any>) => {
             if (data.code == 200) {
 
