@@ -14,7 +14,7 @@ export class LineComponent implements OnInit {
     userList: User[] = [];
     lineList: Line[] = [];
     page: any = {
-        pageSize: 10
+        pageSize: 50
     };
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) { }

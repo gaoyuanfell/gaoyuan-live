@@ -45,7 +45,7 @@ export class LineDetailComponent implements OnInit {
             this.id = lineId || id;
             if (lineId != 0) {
                 this.getSendOne(id);
-                body.lineSendId = lineId;
+                body.lineSendId = id;
             } else {
                 this.getOne(id);
                 body.lineId = id;
@@ -59,9 +59,12 @@ export class LineDetailComponent implements OnInit {
     }
 
     publicReview() {
-        this.comment.lineId = this.lineId;
-        this.comment.userId = this.user.id;
-        this.http.post('/comment/insert.htm', this.comment).subscribe((data: Result<Comment>) => {
+        let body = {
+            context: this.comment.context,
+            lineId: this.lineId,
+            lineSendId: this.lineSendId,
+        };
+        this.http.post('/comment/insert.htm', body).subscribe((data: Result<Comment>) => {
             if (data.code == 200) {
                 this.line.review++;
                 this.comment = {};
