@@ -37,7 +37,7 @@ export class LineComponent implements OnInit {
         this.http.post('/lineSend/delete.htm', {id:id}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data)
-                this.lineList.splice(i,i);
+                this.lineList.splice(i,1);
             }
         })
     }

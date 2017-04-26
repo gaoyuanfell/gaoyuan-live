@@ -51,7 +51,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     back() {
-        this.router.navigate(['/line'])
+        this.router.navigate(['/line']);
     }
 
     publicReview() {
@@ -143,7 +143,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     addPraisedComment(comment) {
-        this.http.post('/comment/addPraised.htm', { id: comment.id, userId: this.userId }).subscribe((data: Result<any>) => {
+        this.http.post('/comment/addPraised.htm', { id: comment.id, lineId: comment.lineId, lineSendId: comment.lineSendId }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     comment.isPraised = 0;
