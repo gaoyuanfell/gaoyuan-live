@@ -69,3 +69,16 @@ export interface Comment {
     createDate?: Date
     updateDate?: Date
 }
+
+export interface Reply {
+    id?: number
+    branchId?: number
+    lineId?: number
+    lineSendId?: number
+    userId?: number
+    context?: string
+    praised?: number
+    state?: number
+    createDate?: Date
+    updateDate?: Date
+}

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, Data } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
+import { $Storage } from '../storage';
 
 @Component({
     selector: 'app-line',
@@ -10,7 +11,9 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./line.component.scss']
 })
 export class LineComponent implements OnInit {
+    userId: number;
     line: Line = {};
+    user: User = $Storage('user');
     userList: User[] = [];
     lineList: Line[] = [];
     page: any = {
@@ -22,11 +25,21 @@ export class LineComponent implements OnInit {
     ngOnInit() {
         this.getUserList();
         this.getLineList();
+        this.userId = this.user.id;
     }
 
     go(id, lineId) {
         // console.info(lineId)
         this.router.navigate(['/line', id], { queryParams: { lineId: lineId, id: id } })
+    }
+
+    delete(id,i){
+        this.http.post('/lineSend/delete.htm', {id:id}).subscribe((data: Result<any>) => {
+            if (data.code == 200) {
+                console.info(data)
+                this.lineList.splice(i,i);
+            }
+        })
     }
 
     getUserList() {

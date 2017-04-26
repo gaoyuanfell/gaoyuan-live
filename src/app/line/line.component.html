@@ -28,26 +28,27 @@
 
     <table class="table">
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>标题</th>
-            <th>点赞</th>
-            <th>评论</th>
-            <th>分享</th>
-            <th>操作</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>点赞</th>
+                <th>评论</th>
+                <th>分享</th>
+                <th>操作</th>
+            </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let line of lineList">
-            <td>{{line.id}}</td>
-            <td>{{line.title || line.context}}</td>
-            <td>{{line.praised | number}}</td>
-            <td>{{line.review | number}}</td>
-            <td>{{line.forward | number}}</td>
-            <td>
-                <a class="badge badge-pill badge-default" (click)="go(line.id,line.lineId)">详情</a>
-            </td>
-        </tr>
+            <tr *ngFor="let line of lineList; count as c; index as i">
+                <td>{{line.id}}</td>
+                <td>{{line.title || line.context}}</td>
+                <td>{{line.praised | number}}</td>
+                <td>{{line.review | number}}</td>
+                <td>{{line.forward | number}}</td>
+                <td>
+                    <span class="badge badge-pill badge-default" (click)="go(line.id,line.lineId)">详情</span>
+                    <span *ngIf="line.lineId != 0 && line.userId == userId" class="badge badge-pill badge-danger" (click)="delete(line.id,i)">删除</span>
+                </td>
+            </tr>
         </tbody>
     </table>
 </form>

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { Scheduler } from 'rxjs/Scheduler';
+import { $Storage } from '../../storage';
 
 @Component({
     selector: 'app-line-detail',
@@ -13,7 +14,7 @@ import { Scheduler } from 'rxjs/Scheduler';
 })
 export class LineDetailComponent implements OnInit {
     context: string;
-    user: User;
+    user: User = $Storage('user');
     id: number = 0;
     lineId: number = 0;
     lineSendId: number = 0;
@@ -29,16 +30,11 @@ export class LineDetailComponent implements OnInit {
     constructor(private route: ActivatedRoute, private router: Router, private http: Http) { }
 
     ngOnInit() {
-        let user = window.localStorage.getItem("user");
-        if (user) {
-            this.user = JSON.parse(user);
-            this.userId = this.user.id;
-        }
+        this.userId = this.user.id;
         // this.route.data.subscribe(data => {
         //     console.info(data);
         // })
         this.route.queryParams.subscribe(data => {
-            console.info(data)
             let body = { ...this.page };
             let lineId = +data.lineId;
             let id = +data.id;
