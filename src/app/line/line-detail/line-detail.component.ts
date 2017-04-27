@@ -20,6 +20,8 @@ export class LineDetailComponent implements OnInit {
     lineId: number = 0;
     lineSendId: number = 0;
     userId: number;
+    userToId: number;
+    commentId:number;
     line: Line = {};
     lineSend: LineSend = {};
     comment: Comment = {};
@@ -149,6 +151,19 @@ export class LineDetailComponent implements OnInit {
 
             }
         })
+    }
+
+    //评论回复
+    addReply(){
+        let body = {
+            context:this.replyContext,
+            lineId: this.id,
+            lineSendId: this.lineSendId,
+            userId:this.userId,
+            userToId:this.userToId,
+            commentId:this.commentId
+        }
+        console.info(body);
     }
 
     addPraisedComment(comment) {
