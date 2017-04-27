@@ -14,6 +14,7 @@ import { $Storage } from '../../storage';
 })
 export class LineDetailComponent implements OnInit {
     context: string;
+    replyContext: string;
     user: User = $Storage('user');
     id: number = 0;
     lineId: number = 0;
