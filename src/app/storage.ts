@@ -1,17 +1,3 @@
-/*export class Storage {
-    key:string;
-    agent:any;
-    constructor(key: string, agent?: any) {
-        !agent && (agent = {});
-        let s = JSON.parse(window.localStorage.getItem(this.key));
-        Object.assign(agent, s);
-        this.agent = agent;
-        this.key = key;
-    }
-    get agent(){
-        return this.agent;
-    }
-};*/
 export function $Storage(_key, agent = {}) {
     if (window.localStorage.getItem(_key)) {
         let s = JSON.parse(window.localStorage.getItem(_key));

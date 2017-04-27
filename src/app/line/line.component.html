@@ -46,7 +46,7 @@
                 <td>{{line.forward | number}}</td>
                 <td>
                     <span class="badge badge-pill badge-default" (click)="go(line.id,line.lineId)">详情</span>
-                    <span *ngIf="line.lineId != 0 && line.userId == userId" class="badge badge-pill badge-danger" (click)="delete(line.id,i)">删除</span>
+                    <span *ngIf="line.lineId == 0 && line.userId == userId" class="badge badge-pill badge-danger" (click)="delete(line.id,i)">删除</span>
                 </td>
             </tr>
         </tbody>

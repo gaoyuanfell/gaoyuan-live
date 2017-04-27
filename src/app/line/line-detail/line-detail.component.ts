@@ -54,6 +54,14 @@ export class LineDetailComponent implements OnInit {
         this.router.navigate(['/line']);
     }
 
+    delete(){
+        this.http.post('/lineSend/delete.htm', {id:this.lineSendId}).subscribe((data: Result<any>) => {
+            if (data.code == 200) {
+                console.info(data)
+            }
+        })
+    }
+
     publicReview() {
         let body = {
             context: this.comment.context,

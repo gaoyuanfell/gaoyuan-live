@@ -34,7 +34,7 @@ export class LineComponent implements OnInit {
     }
 
     delete(id,i){
-        this.http.post('/lineSend/delete.htm', {id:id}).subscribe((data: Result<any>) => {
+        this.http.post('/line/delete.htm', {id:id}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data)
                 this.lineList.splice(i,1);
