@@ -1,4 +1,4 @@
-import { User, Line, Result, Page, Comment, LineSend } from './../../module';
+import { User, Line, Result, Page, Comment, LineSend, Reply } from './../../module';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -34,9 +34,7 @@ export class LineDetailComponent implements OnInit {
 
     ngOnInit() {
         this.userId = this.user.id;
-        // this.route.data.subscribe(data => {
-        //     console.info(data);
-        // })
+
         this.route.queryParams.subscribe(data => {
             let body = { ...this.page };
             let lineId = +data.lineId;
@@ -159,11 +157,30 @@ export class LineDetailComponent implements OnInit {
             context:this.replyContext,
             lineId: this.id,
             lineSendId: this.lineSendId,
-            userId:this.userId,
             userToId:this.userToId,
             commentId:this.commentId
         }
+        this.http.post('/reply/insert.htm',body).subscribe( (data:Result<any>) => {
+            if (data.code == 200) {
+                console.info(data)
+            }
+        } )
         console.info(body);
+    }
+
+    watchReview(id,i){
+        console.info(id);
+        console.info(i)
+        let body = {
+            commentId:id,
+            pageSize:20
+        }
+        this.http.post('/reply/findOfComPage.htm',body).subscribe( (data:Result<Page<Reply>>) => {
+            if (data.code == 200) {
+                console.info(data)
+                this.commentList[i].replies = data.doc
+            }
+        } )
     }
 
     addPraisedComment(comment) {
@@ -175,6 +192,20 @@ export class LineDetailComponent implements OnInit {
                 } else {
                     comment.isPraised = 1;
                     ++comment.praised
+                }
+            }
+        })
+    }
+
+    addPraisendReply(reply){
+        this.http.post('/reply/addPraised.htm', { id: reply.id, lineId: reply.lineId, lineSendId: reply.lineSendId }).subscribe((data: Result<any>) => {
+            if (data.code == 200) {
+                if (data.doc) {
+                    reply.isPraised = 0;
+                    --reply.praised
+                } else {
+                    reply.isPraised = 1;
+                    ++reply.praised
                 }
             }
         })

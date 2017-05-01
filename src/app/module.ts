@@ -36,6 +36,24 @@ export interface Line {
     isForward?: number
 }
 
+export interface Branch {
+    id?: number
+    user?: User
+    line?: Line
+    userId?: number
+    lineId?: number
+    title?: string
+    introduce?: string
+    url?: string
+    lng?: string
+    lat?: string
+    scope?: string
+    praised?: number
+    review?: number
+    privacy?: number
+    isPraised?: number
+}
+
 export interface LineSend {
     id?: number
     lineId?: number
@@ -68,14 +86,17 @@ export interface Comment {
     state?: number
     createDate?: Date
     updateDate?: Date
+    replies?:Page<Reply>
 }
 
 export interface Reply {
     id?: number
+    commentId?: number
     branchId?: number
     lineId?: number
     lineSendId?: number
     userId?: number
+    userToId?: number
     context?: string
     praised?: number
     state?: number
