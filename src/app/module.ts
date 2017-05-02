@@ -45,6 +45,7 @@ export interface Branch {
     title?: string
     introduce?: string
     url?: string
+    urls?: string[]
     lng?: string
     lat?: string
     scope?: string

@@ -10,23 +10,40 @@
     </div>
 </div>
 
-<form #addBranchForm="ngForm">
+<form #addBranchForm="ngForm" (submit)="branchSubmit()">
     <div class="form-group row">
         <label class="col-2 col-form-label">标题：</label>
         <div class="col-10">
             <input class="form-control" type="text" placeholder="标题" [(ngModel)]="branch.title" name="title">
         </div>
     </div>
+
     <div class="form-group row">
         <label class="col-2 col-form-label">描述：</label>
         <div class="col-10">
             <textarea class="form-control" placeholder="描述" [(ngModel)]="branch.introduce" name="introduce"></textarea>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-2 col-form-label">图片：</label>
-        <div class="col-10">
-            <input class="form-control" type="file" placeholder="图片" [(ngModel)]="branch.url" name="url">
+
+    <form #urlForm="ngForm">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">图片：</label>
+            <div class="col-10">
+                <button type="button" class="btn btn-secondary" (click)=" fileUrl.click() ">上&emsp;传</button>
+                <input hide class="form-control" type="file" multiple placeholder="图片" [(ngModel)]="branch.urls" name="urls" #fileUrl (change)="upload(fileUrl);urlForm.reset()">
+            </div>
         </div>
-    </div>
+    </form>
+
+    <button type="submit" class="btn btn-primary">提&emsp;交</button>
 </form>
+
+<div class="card" *ngFor="let branch of branchList">
+    <img class="card-img-top" [src]>
+    <div class="card-block">
+        <h4 class="card-title">{{branch.title}}</h4>
+        <p class="card-text">{{branch.introduce}}</p>
+        <a class="badge badge-pill" [ngClass]="{'badge-default':!branch.isPraised,'badge-success':branch.isPraised}" (click)="addPraised(branch.id)">点&nbsp;赞 {{line.praised}}</a>
+        <a class="badge badge-pill badge-primary">评&nbsp;论 {{branch.review}}</a>
+    </div>
+</div>
