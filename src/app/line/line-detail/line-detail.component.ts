@@ -88,6 +88,7 @@ export class LineDetailComponent implements OnInit {
      * @param body
      */
     getCommentList(body) {
+        body.type = 1;
         this.commentService.commentPageOfType(body).subscribe((data: Result<Page<Comment>>) => {
             if (data.code == 200) {
                 this.commentList = data.doc.list;
