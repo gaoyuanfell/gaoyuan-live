@@ -1,3 +1,6 @@
+import { UploadService } from './../../service/upload.service';
+import { BranchService } from './../../service/branch.service';
+import { LineService } from './../../service/line.service';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -6,7 +9,8 @@ import { Branch, Line, Result, Page } from './../module';
 @Component({
     selector: 'app-branch',
     templateUrl: './branch.component.html',
-    styleUrls: ['./branch.component.scss']
+    styleUrls: ['./branch.component.scss'],
+    providers: [LineService, BranchService,UploadService]
 })
 export class BranchComponent implements OnInit {
     branchList: Branch[] = [];
@@ -14,7 +18,7 @@ export class BranchComponent implements OnInit {
     lineId: number = 0;
     branch: Branch = {};
     tmpUrlList:string[] = [];
-    constructor(private route: ActivatedRoute, private router: Router, private http: Http) { }
+    constructor(private route: ActivatedRoute, private router: Router, private lineService:LineService, private branchService:BranchService, private uploadService:UploadService) { }
 
     ngOnInit() {
         this.route.params.subscribe((data) => {
@@ -26,7 +30,7 @@ export class BranchComponent implements OnInit {
     }
 
     getBranchList(lineId) {
-        this.http.post('/branch/findPage.htm', { lineId: lineId }).subscribe((data: Result<Page<Branch>>) => {
+        this.branchService.branchPage({ lineId: lineId }).subscribe((data: Result<Page<Branch>>) => {
             if (data.code == 200) {
                 this.branchList = data.doc.list;
             }
@@ -34,7 +38,7 @@ export class BranchComponent implements OnInit {
     }
 
     getOne(id) {
-        this.http.post('/line/findOneOfUser.htm', { id: id }).subscribe((data: Result<Line>) => {
+        this.lineService.lineOfUser({ id: id }).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
                 this.line = data.doc;
             }
@@ -53,7 +57,7 @@ export class BranchComponent implements OnInit {
             };
             a.readAsDataURL(file);
         }
-        this.http.post('/upload/uploadPhoto.htm', formData).subscribe((data: Result<Array<string>>) => {
+        this.uploadService.uploadPhoto(formData).subscribe((data: Result<Array<string>>) => {
             if (data.code == 200) {
                 this.branch.url = data.doc.join(",");
             }
@@ -65,7 +69,7 @@ export class BranchComponent implements OnInit {
             ...this.branch,
             lineId: this.lineId
         }
-        this.http.post('/branch/insert.htm', body).subscribe((data: Result<any>) => {
+        this.branchService.insert(body).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data);
             }

@@ -1,3 +1,5 @@
+import { UserService } from './../../service/user.service';
+import { LineService } from './../../service/line.service';
 import { User, Line, Result, Page } from './../module';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -8,7 +10,8 @@ import { $Storage } from '../storage';
 @Component({
     selector: 'app-line',
     templateUrl: './line.component.html',
-    styleUrls: ['./line.component.scss']
+    styleUrls: ['./line.component.scss'],
+    providers: [LineService, UserService]
 })
 export class LineComponent implements OnInit {
     userId: number;
@@ -20,7 +23,7 @@ export class LineComponent implements OnInit {
         pageSize: 50
     };
 
-    constructor(private http: Http, private router: Router, private route: ActivatedRoute) { }
+    constructor(private router: Router, private route: ActivatedRoute, private lineService: LineService, private userService: UserService) { }
 
     ngOnInit() {
         this.getUserList();
@@ -29,21 +32,20 @@ export class LineComponent implements OnInit {
     }
 
     go(id, lineId) {
-        // console.info(lineId)
         this.router.navigate(['/line', id], { queryParams: { lineId: lineId, id: id } })
     }
 
-    delete(id,i){
-        this.http.post('/line/delete.htm', {id:id}).subscribe((data: Result<any>) => {
+    delete(id, i) {
+        this.lineService.delete({ id: id }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data)
-                this.lineList.splice(i,1);
+                this.lineList.splice(i, 1);
             }
         })
     }
 
     getUserList() {
-        this.http.post('/user/findList.htm', {}).subscribe((data: Result<User[]>) => {
+        this.userService.userList().subscribe((data: Result<User[]>) => {
             if (data.code == 200) {
                 this.userList = data.doc;
             }
@@ -51,7 +53,7 @@ export class LineComponent implements OnInit {
     }
 
     getLineList() {
-        this.http.post('/line/findPage.htm', {...this.page}).subscribe((data: Result<Page<Line>>) => {
+        this.lineService.linePage({ ...this.page }).subscribe((data: Result<Page<Line>>) => {
             if (data.code == 200) {
                 this.lineList = data.doc.list;
             }
@@ -59,13 +61,12 @@ export class LineComponent implements OnInit {
     }
 
     addLineSubmit() {
-        this.http.post('/line/insert.htm', this.line).subscribe((data: Result<Line>) => {
+        this.lineService.insert(this.line).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
                 this.line.id = data.doc.id
                 this.lineList.push(this.line);
                 this.line = {};
             }
-            // console.info(data)
         })
     }
 

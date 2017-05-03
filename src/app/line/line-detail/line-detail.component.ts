@@ -1,3 +1,7 @@
+import { ReplyService } from './../../../service/reply.service';
+import { CommentService } from './../../../service/comment.service';
+import { LineSendService } from './../../../service/line-send.service';
+import { LineService } from './../../../service/line.service';
 import { User, Line, Result, Page, Comment, LineSend, Reply } from './../../module';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -10,7 +14,8 @@ import { $Storage } from '../../storage';
 @Component({
     selector: 'app-line-detail',
     templateUrl: './line-detail.component.html',
-    styleUrls: ['./line-detail.component.scss']
+    styleUrls: ['./line-detail.component.scss'],
+    providers: [LineService, LineSendService, CommentService, ReplyService]
 })
 export class LineDetailComponent implements OnInit {
     context: string;
@@ -21,7 +26,7 @@ export class LineDetailComponent implements OnInit {
     lineSendId: number = 0;
     userId: number;
     userToId: number;
-    commentId:number;
+    commentId: number;
     line: Line = {};
     lineSend: LineSend = {};
     comment: Comment = {};
@@ -30,7 +35,7 @@ export class LineDetailComponent implements OnInit {
         pageSize: 10
     };
 
-    constructor(private route: ActivatedRoute, private router: Router, private http: Http) { }
+    constructor(private route: ActivatedRoute, private router: Router, private lineService: LineService, private lineSendService: LineSendService, private commentService: CommentService, private replyService: ReplyService) { }
 
     ngOnInit() {
         this.userId = this.user.id;
@@ -55,8 +60,8 @@ export class LineDetailComponent implements OnInit {
         this.router.navigate(['/line']);
     }
 
-    delete(){
-        this.http.post('/lineSend/delete.htm', {id:this.lineSendId}).subscribe((data: Result<any>) => {
+    delete() {
+        this.lineSendService.delete({ id: this.lineSendId }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data)
             }
@@ -69,7 +74,7 @@ export class LineDetailComponent implements OnInit {
             lineId: this.lineId,
             lineSendId: this.lineSendId,
         };
-        this.http.post('/comment/insert.htm', body).subscribe((data: Result<Comment>) => {
+        this.commentService.insert(body).subscribe((data: Result<Comment>) => {
             if (data.code == 200) {
                 this.line.review++;
                 this.comment = {};
@@ -82,7 +87,7 @@ export class LineDetailComponent implements OnInit {
      * @param body
      */
     getCommentList(body) {
-        this.http.post('/comment/findPage.htm', body).subscribe((data: Result<Page<Comment>>) => {
+        this.commentService.commentPage(body).subscribe((data: Result<Page<Comment>>) => {
             if (data.code == 200) {
                 this.commentList = data.doc.list;
             }
@@ -90,7 +95,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     getOne(id) {//lineId
-        this.http.post('/line/findOneOfUser.htm', { id: id }).subscribe((data: Result<Line>) => {
+        this.lineService.lineOfUser({ id: id }).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
                 this.line = data.doc;
                 this.lineId = id;
@@ -99,7 +104,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     getSendOne(id) {//lineSendId
-        this.http.post('/lineSend/findOneOfUser.htm', { id: id }).subscribe((data: Result<LineSend>) => {
+        this.lineSendService.lineSendOfUser({ id: id }).subscribe((data: Result<LineSend>) => {
             if (data.code == 200) {
                 this.lineSend = data.doc;
                 this.line = data.doc.line;
@@ -109,7 +114,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     addPraised(id) {
-        this.http.post('/line/addPraised.htm', { id: id }).subscribe((data: Result<any>) => {
+        this.lineService.addPraised({ id: id }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     this.line.isPraised = 0;
@@ -123,7 +128,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     addPraisedSendLine(id) {
-        this.http.post('/lineSend/addPraised.htm', { id: id }).subscribe((data: Result<any>) => {
+        this.lineSendService.addPraised({ id: id }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     this.lineSend.isPraised = 0;
@@ -144,7 +149,7 @@ export class LineDetailComponent implements OnInit {
             sort: this.lineSend.sort || 0,
             lineSendId: this.lineSendId,
         };
-        this.http.post('/lineSend/insert.htm', body).subscribe((data: Result<any>) => {
+        this.lineSendService.insert(body).subscribe((data: Result<any>) => {
             if (data.code == 200) {
 
             }
@@ -152,39 +157,39 @@ export class LineDetailComponent implements OnInit {
     }
 
     //评论回复
-    addReply(){
+    addReply() {
         let body = {
-            context:this.replyContext,
+            context: this.replyContext,
             lineId: this.id,
             lineSendId: this.lineSendId,
-            userToId:this.userToId,
-            commentId:this.commentId
+            userToId: this.userToId,
+            commentId: this.commentId
         }
-        this.http.post('/reply/insert.htm',body).subscribe( (data:Result<any>) => {
+        this.replyService.insert(body).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data)
             }
-        } )
+        })
         console.info(body);
     }
 
-    watchReview(id,i){
+    watchReview(id, i) {
         console.info(id);
         console.info(i)
         let body = {
-            commentId:id,
-            pageSize:20
+            commentId: id,
+            pageSize: 20
         }
-        this.http.post('/reply/findOfComPage.htm',body).subscribe( (data:Result<Page<Reply>>) => {
+        this.replyService.replyOfComPage(body).subscribe((data: Result<Page<Reply>>) => {
             if (data.code == 200) {
                 console.info(data)
                 this.commentList[i].replies = data.doc
             }
-        } )
+        })
     }
 
     addPraisedComment(comment) {
-        this.http.post('/comment/addPraised.htm', { id: comment.id, lineId: comment.lineId, lineSendId: comment.lineSendId }).subscribe((data: Result<any>) => {
+        this.commentService.addPraised({ id: comment.id, lineId: comment.lineId, lineSendId: comment.lineSendId }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     comment.isPraised = 0;
@@ -197,8 +202,8 @@ export class LineDetailComponent implements OnInit {
         })
     }
 
-    addPraisendReply(reply){
-        this.http.post('/reply/addPraised.htm', { id: reply.id, lineId: reply.lineId, lineSendId: reply.lineSendId }).subscribe((data: Result<any>) => {
+    addPraisendReply(reply) {
+        this.replyService.addPraised({ id: reply.id, lineId: reply.lineId, lineSendId: reply.lineSendId }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     reply.isPraised = 0;
