@@ -1,0 +1,28 @@
+.card-image {
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    padding: 1.25rem;
+    flex-wrap: wrap;
+    .img-item {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        text-align: center;
+    }
+}
+
+.tmpUrlList {
+    display: flex;
+    display: -ms-flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    .tmp-item {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        text-align: center;
+    }
+}

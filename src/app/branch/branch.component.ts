@@ -13,6 +13,7 @@ export class BranchComponent implements OnInit {
     line: Line = {};
     lineId: number = 0;
     branch: Branch = {};
+    tmpUrlList:string[] = [];
     constructor(private route: ActivatedRoute, private router: Router, private http: Http) { }
 
     ngOnInit() {
@@ -27,13 +28,12 @@ export class BranchComponent implements OnInit {
     getBranchList(lineId) {
         this.http.post('/branch/findPage.htm', { lineId: lineId }).subscribe((data: Result<Page<Branch>>) => {
             if (data.code == 200) {
-                this.branchList = data.doc.list;//.map( (m) => {m.urls = m.url.split(","); return m; } );
-                console.info(this.branchList);
+                this.branchList = data.doc.list;
             }
         })
     }
 
-    getOne(id) {//lineId
+    getOne(id) {
         this.http.post('/line/findOneOfUser.htm', { id: id }).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
                 this.line = data.doc;
@@ -43,13 +43,18 @@ export class BranchComponent implements OnInit {
 
     upload(f) {
         let files = f.files;
+        this.tmpUrlList.length = 0;
         let formData = new FormData();
         for (let file of files) {
             formData.append('file', file, file.name);
+            var a = new FileReader();
+            a.onload = (e:any) => {
+                this.tmpUrlList.push(e.target.result)
+            };
+            a.readAsDataURL(file);
         }
         this.http.post('/upload/uploadPhoto.htm', formData).subscribe((data: Result<Array<string>>) => {
             if (data.code == 200) {
-                console.info(data);
                 this.branch.url = data.doc.join(",");
             }
         })

@@ -30,6 +30,11 @@
             <label class="col-2 col-form-label">图片：</label>
             <div class="col-10">
                 <button type="button" class="btn btn-secondary" (click)=" fileUrl.click() ">上&emsp;传</button>
+                <div class="tmpUrlList">
+                    <div class="tmp-item" *ngFor="let url of tmpUrlList">
+                        <img width="40" [src]="url">
+                    </div>
+                </div>
                 <input hide class="form-control" type="file" multiple placeholder="图片" [(ngModel)]="branch.urls" name="urls" #fileUrl (change)="upload(fileUrl);urlForm.reset()">
             </div>
         </div>
@@ -39,7 +44,11 @@
 </form>
 
 <div class="card" *ngFor="let branch of branchList">
-    <img class="card-img-top" [src]>
+    <div class="card-image">
+        <div class="img-item" *ngFor="let url of branch.urls">
+            <img width="200" [src]="url">
+        </div>
+    </div>
     <div class="card-block">
         <h4 class="card-title">{{branch.title}}</h4>
         <p class="card-text">{{branch.introduce}}</p>
