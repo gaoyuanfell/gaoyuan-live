@@ -54,7 +54,7 @@
         <p class="card-text">{{branch.introduce}}</p>
         <a class="badge badge-pill" [ngClass]="{'badge-default':!branch.isPraised,'badge-success':branch.isPraised}" (click)="addPraised(branch)">点&nbsp;赞 {{branch.praised}}</a>
         <a class="badge badge-pill badge-primary" data-toggle="modal" data-target="#branch_comment" (click)="_branch = branch">评&nbsp;论 {{branch.review}}</a>
-        <a class="badge badge-pill badge-primary" (click)="getCommentList(branch)">查看评论</a>
+        <a *ngIf="branch.review != 0" class="badge badge-pill badge-primary" (click)="getCommentList(branch)">查看评论</a>
     </div>
 
     <ul class="list-group">

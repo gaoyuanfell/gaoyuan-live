@@ -128,10 +128,10 @@ export class BranchComponent implements OnInit {
             if (data.code == 200) {
                 if (data.doc) {
                     comment.isPraised = 0;
-                    --comment.praised
+                    --comment.praised;
                 } else {
                     comment.isPraised = 1;
-                    ++comment.praised
+                    ++comment.praised;
                 }
             }
         })
