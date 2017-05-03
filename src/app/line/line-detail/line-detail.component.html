@@ -8,7 +8,7 @@
     <img class="card-img-top" [src]>
     <div class="card-block">
         <h4 class="card-title">{{line.title}}</h4>
-        <p class="card-text">{{line.introduce}}</p>
+        <pre class="card-text">{{line.introduce}}</pre>
         <a class="badge badge-pill" [ngClass]="{'badge-default':!line.isPraised,'badge-success':line.isPraised}" (click)="addPraised(line.id)">点&nbsp;赞 {{line.praised}}</a>
         <a class="badge badge-pill badge-primary">评&nbsp;论 {{line.review}}</a>
         <a class="badge badge-pill" [ngClass]="{'badge-default':!line.isForward,'badge-success':line.isForward}">分&nbsp;享 {{line.forward}}</a>
