@@ -73,6 +73,7 @@ export class LineDetailComponent implements OnInit {
             context: this.comment.context,
             lineId: this.lineId,
             lineSendId: this.lineSendId,
+            type: this.lineId ? 1 : 2
         };
         this.commentService.insert(body).subscribe((data: Result<Comment>) => {
             if (data.code == 200) {
@@ -87,7 +88,7 @@ export class LineDetailComponent implements OnInit {
      * @param body
      */
     getCommentList(body) {
-        this.commentService.commentPage(body).subscribe((data: Result<Page<Comment>>) => {
+        this.commentService.commentPageOfType(body).subscribe((data: Result<Page<Comment>>) => {
             if (data.code == 200) {
                 this.commentList = data.doc.list;
             }

@@ -13,4 +13,12 @@ export class BranchService {
     branchPage(body = {}) {
         return this.http.post('/branch/findPage.htm', body);
     }
+
+    branchPageOfLine(body = {}) {
+        return this.http.post('/branch/findPageOfLine.htm', body);
+    }
+
+    addPraised(body = {}) {
+        return this.http.post('/branch/addPraised.htm', body);
+    }
 }

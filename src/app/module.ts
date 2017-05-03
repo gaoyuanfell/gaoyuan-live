@@ -34,6 +34,7 @@ export interface Line {
     privacy?: number
     isPraised?: number
     isForward?: number
+    comments?: Comment[]
 }
 
 export interface Branch {
@@ -53,6 +54,7 @@ export interface Branch {
     review?: number
     privacy?: number
     isPraised?: number
+    comments?: Comment[]
 }
 
 export interface LineSend {
@@ -71,6 +73,7 @@ export interface LineSend {
     isPraised?: number
     isForward?: number
     sort?: number
+    comments?: Comment[]
 }
 
 export interface Comment {
@@ -87,7 +90,7 @@ export interface Comment {
     state?: number
     createDate?: Date
     updateDate?: Date
-    replies?:Page<Reply>
+    replies?: Page<Reply>
 }
 
 export interface Reply {

@@ -1,3 +1,4 @@
+import { CommentService } from './../../service/comment.service';
 import { UploadService } from './../../service/upload.service';
 import { BranchService } from './../../service/branch.service';
 import { LineService } from './../../service/line.service';
@@ -10,15 +11,18 @@ import { Branch, Line, Result, Page } from './../module';
     selector: 'app-branch',
     templateUrl: './branch.component.html',
     styleUrls: ['./branch.component.scss'],
-    providers: [LineService, BranchService,UploadService]
+    providers: [LineService, BranchService,UploadService, CommentService]
 })
 export class BranchComponent implements OnInit {
     branchList: Branch[] = [];
     line: Line = {};
     lineId: number = 0;
     branch: Branch = {};
+    _branch: Branch = {};
+    branchId:number = 0;
+    context:string;
     tmpUrlList:string[] = [];
-    constructor(private route: ActivatedRoute, private router: Router, private lineService:LineService, private branchService:BranchService, private uploadService:UploadService) { }
+    constructor(private route: ActivatedRoute, private router: Router, private lineService:LineService, private branchService:BranchService, private uploadService:UploadService, private commentService:CommentService) { }
 
     ngOnInit() {
         this.route.params.subscribe((data) => {
@@ -30,7 +34,7 @@ export class BranchComponent implements OnInit {
     }
 
     getBranchList(lineId) {
-        this.branchService.branchPage({ lineId: lineId }).subscribe((data: Result<Page<Branch>>) => {
+        this.branchService.branchPageOfLine({ lineId: lineId }).subscribe((data: Result<Page<Branch>>) => {
             if (data.code == 200) {
                 this.branchList = data.doc.list;
             }
@@ -72,6 +76,63 @@ export class BranchComponent implements OnInit {
         this.branchService.insert(body).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data);
+            }
+        })
+    }
+
+    addPraised(branch){
+        this.branchService.addPraised({id:branch.id}).subscribe( (data:Result<any>) => {
+            if (data.code == 200) {
+                if (data.doc) {
+                    branch.isPraised = 0;
+                    --branch.praised
+                } else {
+                    branch.isPraised = 1;
+                    ++branch.praised
+                }
+            }
+        } )
+    }
+
+
+    publicReview() {
+        let body = {
+            context: this.context,
+            type: 3,
+            branchId:this._branch.id,
+            lineId:this.lineId
+        };
+        this.commentService.insert(body).subscribe((data: Result<any>) => {
+            if (data.code == 200) {
+                this._branch.review++;
+                this.context = "";
+            }
+        })
+    }
+
+    getCommentList(branch:Branch) {
+        let body = {
+            branchId:branch.id,
+            type:3
+        }
+        this.commentService.commentPageOfType(body).subscribe((data: Result<Page<Comment>>) => {
+            if (data.code == 200) {
+                branch.comments = data.doc.list;
+                console.info(data);
+            }
+        })
+    }
+
+    addPraisedComment(comment) {
+        this.commentService.addPraised({ id: comment.id, lineId: comment.lineId, branchId: comment.branchId }).subscribe((data: Result<any>) => {
+            if (data.code == 200) {
+                if (data.doc) {
+                    comment.isPraised = 0;
+                    --comment.praised
+                } else {
+                    comment.isPraised = 1;
+                    ++comment.praised
+                }
             }
         })
     }

@@ -14,6 +14,10 @@ export class CommentService {
         return this.http.post('/comment/findPage.htm', body)
     }
 
+    commentPageOfType(body = {}) {
+        return this.http.post('/comment/findPageOfType.htm', body)
+    }
+
     addPraised(body = {}) {
         return this.http.post('/comment/addPraised.htm', body)
     }
