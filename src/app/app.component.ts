@@ -1,4 +1,3 @@
-import { Http } from '@angular/http';
 import { Component, Renderer } from '@angular/core';
 import { fadeInLOutR } from '../animations/fade-in-l-out-r'
 
@@ -9,11 +8,9 @@ import { fadeInLOutR } from '../animations/fade-in-l-out-r'
     animations: [fadeInLOutR]
 })
 export class AppComponent {
-    constructor(private renderer: Renderer, private http: Http) {
+    constructor(private renderer: Renderer) {
         renderer.listenGlobal('window', 'load', (event: Event) => {
-            // this.http.post("/user/findPage.htm",{}).subscribe( (data) => {
-            //     console.info(data);
-            // } )
+
         })
     }
     search: any;

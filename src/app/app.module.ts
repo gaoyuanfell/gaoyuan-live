@@ -30,8 +30,8 @@ import ComponentModule from "./component";
         BranchModule,
     ],
     providers: [
-        ...Interceptor,
         { provide: APP_BASE_HREF, useValue: '/' },
+        ...Interceptor,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

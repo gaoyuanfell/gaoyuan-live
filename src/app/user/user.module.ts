@@ -10,4 +10,4 @@ import ComponentModule from '../component'
         UserRoutingModule,
     ]
 })
-export class UserModule { }
+export class UserModule {  }
