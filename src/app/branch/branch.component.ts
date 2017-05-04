@@ -11,7 +11,7 @@ import { Branch, Line, Result, Page } from './../module';
     selector: 'app-branch',
     templateUrl: './branch.component.html',
     styleUrls: ['./branch.component.scss'],
-    providers: [LineService, BranchService,UploadService, CommentService]
+    providers: [LineService, BranchService, UploadService, CommentService]
 })
 export class BranchComponent implements OnInit {
     branchList: Branch[] = [];
@@ -19,10 +19,10 @@ export class BranchComponent implements OnInit {
     lineId: number = 0;
     branch: Branch = {};
     _branch: Branch = {};
-    branchId:number = 0;
-    context:string;
-    tmpUrlList:string[] = [];
-    constructor(private route: ActivatedRoute, private router: Router, private lineService:LineService, private branchService:BranchService, private uploadService:UploadService, private commentService:CommentService) { }
+    branchId: number = 0;
+    context: string;
+    tmpUrlList: string[] = [];
+    constructor(private route: ActivatedRoute, private router: Router, private lineService: LineService, private branchService: BranchService, private uploadService: UploadService, private commentService: CommentService) { }
 
     ngOnInit() {
         this.route.params.subscribe((data) => {
@@ -34,7 +34,7 @@ export class BranchComponent implements OnInit {
     }
 
     getBranchList(lineId) {
-        this.branchService.branchPageOfLine({ lineId: lineId }).subscribe((data: Result<Page<Branch>>) => {
+        this.branchService.branchPageOfLine({ lineId: lineId, pageSize: 20 }).subscribe((data: Result<Page<Branch>>) => {
             if (data.code == 200) {
                 this.branchList = data.doc.list;
             }
@@ -56,7 +56,7 @@ export class BranchComponent implements OnInit {
         for (let file of files) {
             formData.append('file', file, file.name);
             var a = new FileReader();
-            a.onload = (e:any) => {
+            a.onload = (e: any) => {
                 this.tmpUrlList.push(e.target.result)
             };
             a.readAsDataURL(file);
@@ -80,8 +80,8 @@ export class BranchComponent implements OnInit {
         })
     }
 
-    addPraised(branch){
-        this.branchService.addPraised({id:branch.id}).subscribe( (data:Result<any>) => {
+    addPraised(branch) {
+        this.branchService.addPraised({ id: branch.id }).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     branch.isPraised = 0;
@@ -91,7 +91,7 @@ export class BranchComponent implements OnInit {
                     ++branch.praised
                 }
             }
-        } )
+        })
     }
 
 
@@ -99,8 +99,8 @@ export class BranchComponent implements OnInit {
         let body = {
             context: this.context,
             type: 3,
-            branchId:this._branch.id,
-            lineId:this.lineId
+            branchId: this._branch.id,
+            lineId: this.lineId
         };
         this.commentService.insert(body).subscribe((data: Result<any>) => {
             if (data.code == 200) {
@@ -110,10 +110,10 @@ export class BranchComponent implements OnInit {
         })
     }
 
-    getCommentList(branch:Branch) {
+    getCommentList(branch: Branch) {
         let body = {
-            branchId:branch.id,
-            type:3
+            branchId: branch.id,
+            type: 3
         }
         this.commentService.commentPageOfType(body).subscribe((data: Result<Page<Comment>>) => {
             if (data.code == 200) {
