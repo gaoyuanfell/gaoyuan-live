@@ -34,7 +34,7 @@ export interface Line {
     privacy?: number
     isPraised?: number
     isForward?: number
-    comments?: Comment[]
+    comments?: Page<Comment>
 }
 
 export interface Branch {
@@ -54,7 +54,7 @@ export interface Branch {
     review?: number
     privacy?: number
     isPraised?: number
-    comments?: Comment[]
+    comments?: Page<Comment>
 }
 
 export interface LineSend {
