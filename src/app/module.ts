@@ -1,4 +1,4 @@
-export class Page<T> {
+export interface Page<T> {
     pageIndex?: number
     pageStart?: number
     totalPage?: number
@@ -6,13 +6,13 @@ export class Page<T> {
     list?: T[]
 }
 
-export class Result<T> {
+export interface Result<T> {
     code?: number
     doc?: T
     msg?: string
 }
 
-export class User {
+export interface User {
     id?: number
     userDetailId?: number
     user?: string
@@ -22,7 +22,7 @@ export class User {
     nickName?: string
 }
 
-export class Line {
+export interface Line {
     id?: number
     user?: User
     userId?: number
@@ -37,7 +37,7 @@ export class Line {
     comments?: Comment[]
 }
 
-export class Branch {
+export interface Branch {
     id?: number
     user?: User
     line?: Line
@@ -57,7 +57,7 @@ export class Branch {
     comments?: Comment[]
 }
 
-export class LineSend {
+export interface LineSend {
     id?: number
     lineId?: number
     line?: Line
@@ -76,7 +76,7 @@ export class LineSend {
     comments?: Comment[]
 }
 
-export class Comment {
+export interface Comment {
     id?: number
     branchId?: number
     lineId?: number
@@ -93,7 +93,7 @@ export class Comment {
     replies?: Page<Reply>
 }
 
-export class Reply {
+export interface Reply {
     id?: number
     commentId?: number
     branchId?: number
