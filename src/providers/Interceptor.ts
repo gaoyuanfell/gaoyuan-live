@@ -7,12 +7,14 @@ import {
 import { HttpXHRBackend } from './httpInterceptor';
 import { Provider } from "@angular/core";
 
-let Interceptor: Provider[] = [
-    {
-        provide: XHRBackend,
-        useFactory: (_browserXHR: BrowserXhr, _baseResponseOptions: ResponseOptions, _xsrfStrategy: XSRFStrategy) => { return new HttpXHRBackend(_browserXHR, _baseResponseOptions, _xsrfStrategy) },
-        deps: [BrowserXhr, ResponseOptions, XSRFStrategy]
-    }
-]
+export function $httpInterceptor(_browserXHR: BrowserXhr, _baseResponseOptions: ResponseOptions, _xsrfStrategy: XSRFStrategy) {
+    return new HttpXHRBackend(_browserXHR, _baseResponseOptions, _xsrfStrategy)
+}
 
-export { Interceptor }
+const httpInterceptor = {
+    provide: XHRBackend,
+    useFactory: $httpInterceptor,
+    deps: [BrowserXhr, ResponseOptions, XSRFStrategy]
+}
+
+export { httpInterceptor }

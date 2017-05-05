@@ -4,24 +4,25 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
+
 /*拦截器*/
-import { Interceptor } from '../providers/Interceptor';
-import pipe from '../pipe/pipe';
+import { httpInterceptor } from '../providers/Interceptor';
+import { DataPipe } from '../pipe/pipe';
+import { ComponentModule } from "./component";
 //组件
 import { MapModule } from './map/map.module';
-import { MapComponent } from './map/map.component';
 import { UserModule } from './user/user.module';
 import { LineModule } from './line/line.module';
 import { BranchModule } from './branch/branch.module';
-import ComponentModule from "./component";
+
 
 @NgModule({
     declarations: [
         AppComponent,
-        ...pipe,
+        DataPipe,
     ],
     imports: [
-        ComponentModule,
+        ...ComponentModule,
         HttpModule,
         AppRoutingModule,
         MapModule,
@@ -31,7 +32,7 @@ import ComponentModule from "./component";
     ],
     providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
-        ...Interceptor,
+        httpInterceptor,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
