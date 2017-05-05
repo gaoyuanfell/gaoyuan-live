@@ -15,14 +15,13 @@ import { UserModule } from './user/user.module';
 import { LineModule } from './line/line.module';
 import { BranchModule } from './branch/branch.module';
 
-
 @NgModule({
     declarations: [
         AppComponent,
         DataPipe,
     ],
     imports: [
-        ...ComponentModule,
+        ComponentModule,
         HttpModule,
         AppRoutingModule,
         MapModule,

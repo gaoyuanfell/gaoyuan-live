@@ -6,7 +6,8 @@ import { MapComponent } from './map.component'
 const routes: Routes = [
     {
         path: 'map',
-        component: MapComponent
+        component: MapComponent,
+        // loadChildren:"app/map/map.module#MapModule"
     }
 ];
 
