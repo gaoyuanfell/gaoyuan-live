@@ -24,7 +24,13 @@
 
 <div class="container mt-4">
     <div class="row">
-        <div class="col-3 align-self-sm-start">
+
+
+
+
+
+
+        <div class="col-3">
             <div class="card">
                 <img class="card-img-top" src="../../assets/img/top.svg">
                 <div class="card-block">
@@ -34,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="body col-6 align-self-sm-start">
+        <div class="body col-6">
             <div class="body-data">
                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                     <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
@@ -62,7 +68,11 @@
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1">{{line.user.nickName}}</h5>
                                     <p>{{b.introduce}}</p>
-                                    <img *ngFor="let u of b.urls" [src]="u">
+                                    <div data-grid="images">
+                                        <div *ngFor="let img of b.imgs">
+                                            <img [src]="img.url" data-action="zoom" data-width="{{img.width}}" data-height="{{img.height}}">
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -71,7 +81,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3 align-self-sm-start">
+        <div class="col-3">
             <div class="card">
                 <img class="card-img-top" src="../../assets/img/top.svg">
                 <div class="card-block">

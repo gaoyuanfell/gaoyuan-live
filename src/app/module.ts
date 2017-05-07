@@ -46,6 +46,12 @@ export interface Line extends Id{
     branch?:Branch[]
 }
 
+export interface Img extends Id{
+    width?:string
+    height?:string
+    url?:string
+}
+
 export interface Branch extends Id{
     id?: number
     user?: User
@@ -56,6 +62,8 @@ export interface Branch extends Id{
     introduce?: string
     url?: string
     urls?: string[]
+    whs?: string[]
+    imgs?:Img[]
     lng?: string
     lat?: string
     scope?: string
