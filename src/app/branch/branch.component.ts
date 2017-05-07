@@ -1,11 +1,11 @@
-import { CommentService } from './../../service/comment.service';
-import { UploadService } from './../../service/upload.service';
-import { BranchService } from './../../service/branch.service';
-import { LineService } from './../../service/line.service';
-import { Http } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { Branch, Line, Result, Page } from './../module';
+import {CommentService} from './../../service/comment.service';
+import {UploadService} from './../../service/upload.service';
+import {BranchService} from './../../service/branch.service';
+import {LineService} from './../../service/line.service';
+import {Http} from '@angular/http';
+import {Router, ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Branch, Line, Result, Page} from './../module';
 
 @Component({
     selector: 'app-branch',
@@ -22,7 +22,9 @@ export class BranchComponent implements OnInit {
     branchId: number = 0;
     context: string;
     tmpUrlList: string[] = [];
-    constructor(private route: ActivatedRoute, private router: Router, private lineService: LineService, private branchService: BranchService, private uploadService: UploadService, private commentService: CommentService) { }
+
+    constructor(private route: ActivatedRoute, private router: Router, private lineService: LineService, private branchService: BranchService, private uploadService: UploadService, private commentService: CommentService) {
+    }
 
     ngOnInit() {
         this.route.params.subscribe((data) => {
@@ -34,7 +36,7 @@ export class BranchComponent implements OnInit {
     }
 
     getBranchList(lineId) {
-        this.branchService.branchPageOfLine({ lineId: lineId, pageSize: 20 }).subscribe((data: Result<Page<Branch>>) => {
+        this.branchService.branchPageOfLine({lineId: lineId, pageSize: 20}).subscribe((data: Result<Page<Branch>>) => {
             if (data.code == 200) {
                 this.branchList = data.doc.list;
             }
@@ -42,7 +44,7 @@ export class BranchComponent implements OnInit {
     }
 
     getOne(id) {
-        this.lineService.lineOfUser({ id: id }).subscribe((data: Result<Line>) => {
+        this.lineService.lineOfUser({id: id}).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
                 this.line = data.doc;
             }
@@ -81,7 +83,7 @@ export class BranchComponent implements OnInit {
     }
 
     addPraised(branch) {
-        this.branchService.addPraised({ id: branch.id }).subscribe((data: Result<any>) => {
+        this.branchService.addPraised({id: branch.id}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     branch.isPraised = 0;
@@ -124,7 +126,7 @@ export class BranchComponent implements OnInit {
     }
 
     addPraisedComment(comment) {
-        this.commentService.addPraised({ id: comment.id, lineId: comment.lineId, branchId: comment.branchId }).subscribe((data: Result<any>) => {
+        this.commentService.addPraised({id: comment.id, lineId: comment.lineId, branchId: comment.branchId}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     comment.isPraised = 0;

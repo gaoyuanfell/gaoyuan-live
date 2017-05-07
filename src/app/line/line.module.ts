@@ -1,8 +1,8 @@
-import { ComponentModule } from '../component'
-import { NgModule } from '@angular/core';
-import { LineRoutingModule } from './line-routing.module';
-import { LineComponent } from './line.component'
-import { LineDetailComponent } from './line-detail/line-detail.component'
+import {ComponentModule} from '../component'
+import {NgModule} from '@angular/core';
+import {LineRoutingModule} from './line-routing.module';
+import {LineComponent} from './line.component'
+import {LineDetailComponent} from './line-detail/line-detail.component'
 @NgModule({
     declarations: [
         LineComponent,
@@ -13,4 +13,5 @@ import { LineDetailComponent } from './line-detail/line-detail.component'
         LineRoutingModule,
     ]
 })
-export class LineModule { }
+export class LineModule {
+}

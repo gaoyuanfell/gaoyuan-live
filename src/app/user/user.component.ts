@@ -1,8 +1,8 @@
-import { UserService } from './../../service/user.service';
-import { User, Result } from './../module';
-import { Http } from '@angular/http';
-import { Component, OnInit } from '@angular/core';
-import { fadeInLOutR } from '../../animations/fade-in-l-out-r'
+import {UserService} from './../../service/user.service';
+import {User, Result} from './../module';
+import {Http} from '@angular/http';
+import {Component, OnInit} from '@angular/core';
+import {fadeInLOutR} from '../../animations/fade-in-l-out-r'
 
 @Component({
     selector: 'app-user',
@@ -14,7 +14,9 @@ import { fadeInLOutR } from '../../animations/fade-in-l-out-r'
 export class UserComponent implements OnInit {
     user: User = {};
     userList: User[] = [];
-    constructor(private userService: UserService) { }
+
+    constructor(private userService: UserService) {
+    }
 
     ngOnInit() {
         this.getUserList()

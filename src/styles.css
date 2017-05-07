@@ -193,16 +193,15 @@ a {
     background-color: transparent;
 }
 
-
 /*-------------------------------*/
 
 @font-face {
-  font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.eot');
-  src: url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.woff') format('woff'),
-  url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.svg#iconfont') format('svg');
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.eot');
+    src: url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.woff') format('woff'),
+    url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_3as1mkkhnlg9o1or.svg#iconfont') format('svg');
 }
 
 .icon {

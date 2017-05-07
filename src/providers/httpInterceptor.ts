@@ -11,15 +11,13 @@ import {
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/throw';
-import { Observable } from 'rxjs/Observable';
-import { baseUrl } from "config";
+import {Observable} from 'rxjs/Observable';
+import {baseUrl} from "config";
 
 export class HttpXHRBackend extends XHRBackend {
-    constructor(
-        private browserXHR: BrowserXhr,
-        private baseResponseOptions: ResponseOptions,
-        private xsrfStrategy: XSRFStrategy,
-    ) {
+    constructor(private browserXHR: BrowserXhr,
+                private baseResponseOptions: ResponseOptions,
+                private xsrfStrategy: XSRFStrategy,) {
         super(browserXHR, baseResponseOptions, xsrfStrategy);
     }
 

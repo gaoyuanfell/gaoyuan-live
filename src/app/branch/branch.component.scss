@@ -1,6 +1,5 @@
 .card-image {
     display: flex;
-    display: -ms-flex;
     display: -webkit-flex;
     padding: 1.25rem;
     flex-wrap: wrap;
@@ -15,7 +14,6 @@
 
 .tmpUrlList {
     display: flex;
-    display: -ms-flex;
     display: -webkit-flex;
     flex-wrap: wrap;
     .tmp-item {

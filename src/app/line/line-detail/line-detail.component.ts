@@ -1,15 +1,15 @@
-import { ReplyService } from './../../../service/reply.service';
-import { CommentService } from './../../../service/comment.service';
-import { LineSendService } from './../../../service/line-send.service';
-import { LineService } from './../../../service/line.service';
-import { User, Line, Result, Page, Comment, LineSend, Reply } from './../../module';
-import { Http } from '@angular/http';
-import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {ReplyService} from './../../../service/reply.service';
+import {CommentService} from './../../../service/comment.service';
+import {LineSendService} from './../../../service/line-send.service';
+import {LineService} from './../../../service/line.service';
+import {User, Line, Result, Page, Comment, LineSend, Reply} from './../../module';
+import {Http} from '@angular/http';
+import {ActivatedRoute, Router, Params} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { Scheduler } from 'rxjs/Scheduler';
-import { $Storage } from '../../storage';
+import {Observable} from 'rxjs/Observable';
+import {Scheduler} from 'rxjs/Scheduler';
+import {$Storage} from '../../storage';
 
 @Component({
     selector: 'app-line-detail',
@@ -35,13 +35,14 @@ export class LineDetailComponent implements OnInit {
         pageSize: 10
     };
 
-    constructor(private route: ActivatedRoute, private router: Router, private lineService: LineService, private lineSendService: LineSendService, private commentService: CommentService, private replyService: ReplyService) { }
+    constructor(private route: ActivatedRoute, private router: Router, private lineService: LineService, private lineSendService: LineSendService, private commentService: CommentService, private replyService: ReplyService) {
+    }
 
     ngOnInit() {
         this.userId = this.user.id;
 
         this.route.queryParams.subscribe(data => {
-            let body = { ...this.page };
+            let body = {...this.page};
             let lineId = +data.lineId;
             let id = +data.id;
             this.id = lineId || id;
@@ -61,7 +62,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     delete() {
-        this.lineSendService.delete({ id: this.lineSendId }).subscribe((data: Result<any>) => {
+        this.lineSendService.delete({id: this.lineSendId}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 console.info(data)
             }
@@ -97,7 +98,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     getOne(id) {//lineId
-        this.lineService.lineOfUser({ id: id }).subscribe((data: Result<Line>) => {
+        this.lineService.lineOfUser({id: id}).subscribe((data: Result<Line>) => {
             if (data.code == 200) {
                 this.line = data.doc;
                 this.lineId = id;
@@ -106,7 +107,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     getSendOne(id) {//lineSendId
-        this.lineSendService.lineSendOfUser({ id: id }).subscribe((data: Result<LineSend>) => {
+        this.lineSendService.lineSendOfUser({id: id}).subscribe((data: Result<LineSend>) => {
             if (data.code == 200) {
                 this.lineSend = data.doc;
                 this.line = data.doc.line;
@@ -116,7 +117,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     addPraised(id) {
-        this.lineService.addPraised({ id: id }).subscribe((data: Result<any>) => {
+        this.lineService.addPraised({id: id}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     this.line.isPraised = 0;
@@ -130,7 +131,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     addPraisedSendLine(id) {
-        this.lineSendService.addPraised({ id: id }).subscribe((data: Result<any>) => {
+        this.lineSendService.addPraised({id: id}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     this.lineSend.isPraised = 0;
@@ -191,7 +192,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     addPraisedComment(comment) {
-        this.commentService.addPraised({ id: comment.id, lineId: comment.lineId, lineSendId: comment.lineSendId }).subscribe((data: Result<any>) => {
+        this.commentService.addPraised({id: comment.id, lineId: comment.lineId, lineSendId: comment.lineSendId}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     comment.isPraised = 0;
@@ -205,7 +206,7 @@ export class LineDetailComponent implements OnInit {
     }
 
     addPraisendReply(reply) {
-        this.replyService.addPraised({ id: reply.id, lineId: reply.lineId, lineSendId: reply.lineSendId }).subscribe((data: Result<any>) => {
+        this.replyService.addPraised({id: reply.id, lineId: reply.lineId, lineSendId: reply.lineSendId}).subscribe((data: Result<any>) => {
             if (data.code == 200) {
                 if (data.doc) {
                     reply.isPraised = 0;

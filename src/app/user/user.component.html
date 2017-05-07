@@ -51,25 +51,25 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>头像</th>
-            <th>昵称</th>
-            <th>用户名</th>
-            <th>操作</th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>头像</th>
+        <th>昵称</th>
+        <th>用户名</th>
+        <th>操作</th>
+    </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of userList">
-            <td>{{user.id}}</td>
-            <td>
-                <img width="50" height="50" [src]="user.url" class="img-thumbnail">
-            </td>
-            <td>{{user.nickName}}</td>
-            <td>{{user.user}}</td>
-            <td>
-                <a class="badge badge-pill badge-primary">修&nbsp;改</a>
-            </td>
-        </tr>
+    <tr *ngFor="let user of userList">
+        <td>{{user.id}}</td>
+        <td>
+            <img width="50" height="50" [src]="user.url" class="img-thumbnail">
+        </td>
+        <td>{{user.nickName}}</td>
+        <td>{{user.user}}</td>
+        <td>
+            <a class="badge badge-pill badge-primary">修&nbsp;改</a>
+        </td>
+    </tr>
     </tbody>
 </table>

@@ -1,20 +1,58 @@
-.container {
-    padding-top: 10px;
+@font-face {
+    font-family: 'moka';
+    src: url('//at.alicdn.com/t/font_uk2kv2gb2ojkbj4i.eot');
+    src: url('//at.alicdn.com/t/font_uk2kv2gb2ojkbj4i.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_uk2kv2gb2ojkbj4i.woff') format('woff'),
+    url('//at.alicdn.com/t/font_uk2kv2gb2ojkbj4i.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_uk2kv2gb2ojkbj4i.svg#moka') format('svg');
 }
 
-[hide]{
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+::selection {
+    background: #D6EDFF;
+}
+
+html {
+    height: 100%;
+    max-height: 100%;
+    font-size: 14px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    max-height: 100%;
+    font-family: "Microsoft YaHei UI", Roboto, sans-serif, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #292b2c;
+    text-rendering: geometricPrecision;
+    background-color: #f5f8fa;
+    //user-select: none;
+    //-webkit-user-select: none;
+    //-moz-user-select: none;
+}
+
+.container {
+    z-index: 1;
+    -webkit-transition: -webkit-transform 0.5s ease;
+    transition: transform 0.5s ease;
+    background-color: #f5f8fa;
+}
+
+[hide] {
     display: none;
 }
 
-pre{
-    font-family: initial;
+pre {
+    font-family: inherit;
     white-space: pre-line;
 }
-
-// body {
-//     user-select: none;
-//     -webkit-user-select: none;
-//     -moz-user-select: none;
-// }
 
 

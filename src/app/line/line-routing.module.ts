@@ -1,8 +1,8 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
 
-import { LineComponent } from './line.component'
-import { LineDetailComponent } from './line-detail/line-detail.component'
+import {LineComponent} from './line.component'
+import {LineDetailComponent} from './line-detail/line-detail.component'
 
 const routes: Routes = [
     {
@@ -19,4 +19,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class LineRoutingModule { }
+export class LineRoutingModule {
+}

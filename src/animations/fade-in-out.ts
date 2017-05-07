@@ -1,5 +1,5 @@
-import { Component, Input, AnimationEntryMetadata } from '@angular/core';
-import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
+import {Component, Input, AnimationEntryMetadata} from '@angular/core';
+import {trigger, state, style, animate, transition, keyframes} from '@angular/animations';
 
 export const fadeInOut: AnimationEntryMetadata = trigger('fadeInOut', [
     // transition('void => *', [
@@ -40,7 +40,7 @@ export const fadeInOut: AnimationEntryMetadata = trigger('fadeInOut', [
     //     animate(200, style({ transform: 'translateX(0) scale(0)' }))
     // ])
 
-    state('in', style({ opacity: 1, transform: 'translateX(0)' })),
+    state('in', style({opacity: 1, transform: 'translateX(0)'})),
     transition('void => *', [
         style({
             opacity: 0,

@@ -1,5 +1,6 @@
 export interface Page<T> {
     pageIndex?: number
+    pageSize?: number
     pageStart?: number
     totalPage?: number
     totalCount?: number
@@ -12,7 +13,13 @@ export interface Result<T> {
     msg?: string
 }
 
-export interface User {
+export interface Id{
+    state?: number
+    createDate?: Date
+    updateDate?: Date
+}
+
+export interface User extends Id{
     id?: number
     userDetailId?: number
     user?: string
@@ -20,9 +27,10 @@ export interface User {
     email?: string
     phone?: string
     nickName?: string
+    url?: string
 }
 
-export interface Line {
+export interface Line extends Id{
     id?: number
     user?: User
     userId?: number
@@ -35,9 +43,10 @@ export interface Line {
     isPraised?: number
     isForward?: number
     comments?: Page<Comment>
+    branch?:Branch[]
 }
 
-export interface Branch {
+export interface Branch extends Id{
     id?: number
     user?: User
     line?: Line
@@ -57,7 +66,7 @@ export interface Branch {
     comments?: Page<Comment>
 }
 
-export interface LineSend {
+export interface LineSend extends Id{
     id?: number
     lineId?: number
     line?: Line
@@ -76,7 +85,7 @@ export interface LineSend {
     comments?: Comment[]
 }
 
-export interface Comment {
+export interface Comment extends Id{
     id?: number
     branchId?: number
     lineId?: number
@@ -87,13 +96,10 @@ export interface Comment {
     praised?: number
     review?: number
     forward?: number
-    state?: number
-    createDate?: Date
-    updateDate?: Date
     replies?: Page<Reply>
 }
 
-export interface Reply {
+export interface Reply extends Id{
     id?: number
     commentId?: number
     branchId?: number
@@ -103,7 +109,4 @@ export interface Reply {
     userToId?: number
     context?: string
     praised?: number
-    state?: number
-    createDate?: Date
-    updateDate?: Date
 }

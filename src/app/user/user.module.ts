@@ -1,8 +1,8 @@
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { UserRoutingModule } from './user-routing.module';
-import { UserComponent } from './user.component'
-import { ComponentModule } from '../component'
+import {FormsModule} from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {UserRoutingModule} from './user-routing.module';
+import {UserComponent} from './user.component'
+import {ComponentModule} from '../component'
 @NgModule({
     declarations: [UserComponent],
     imports: [
@@ -10,4 +10,5 @@ import { ComponentModule } from '../component'
         UserRoutingModule,
     ]
 })
-export class UserModule {  }
+export class UserModule {
+}

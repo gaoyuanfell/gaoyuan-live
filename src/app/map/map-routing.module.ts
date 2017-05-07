@@ -1,7 +1,7 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
 
-import { MapComponent } from './map.component'
+import {MapComponent} from './map.component'
 
 const routes: Routes = [
     {
@@ -15,4 +15,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class MapRoutingModule { }
+export class MapRoutingModule {
+}

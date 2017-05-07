@@ -1,3 +1,3 @@
-import { DataPipe } from './data.pipe';
+import {DataPipe} from './data.pipe';
 
-export { DataPipe }
+export {DataPipe}

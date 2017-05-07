@@ -1,4 +1,4 @@
-! function (t, e) {
+!function (t, e) {
     "function" == typeof define && define.amd ? define(e) : "object" == typeof exports ? module.exports = e(require, exports, module) : t.Tether = e()
 }(this, function (t, e, o) {
     "use strict";
@@ -27,11 +27,12 @@
             i = [];
         if ("fixed" === o) return [t];
         for (var n = t;
-            (n = n.parentNode) && n && 1 === n.nodeType;) {
+             (n = n.parentNode) && n && 1 === n.nodeType;) {
             var r = void 0;
             try {
                 r = getComputedStyle(n)
-            } catch (s) {}
+            } catch (s) {
+            }
             if ("undefined" == typeof r || null === r) return i.push(n), i;
             var a = r,
                 f = a.overflow,
@@ -165,9 +166,9 @@
 
     function w() {
         for (var t = {
-                top: 0,
-                left: 0
-            }, e = arguments.length, o = Array(e), i = 0; i < e; i++) o[i] = arguments[i];
+            top: 0,
+            left: 0
+        }, e = arguments.length, o = Array(e), i = 0; i < e; i++) o[i] = arguments[i];
         return o.forEach(function (e) {
             var o = e.top,
                 i = e.left;
@@ -180,7 +181,7 @@
     }
 
     function O(t, e) {
-        return "scrollParent" === e ? e = t.scrollParents[0] : "window" === e && (e = [pageXOffset, pageYOffset, innerWidth + pageXOffset, innerHeight + pageYOffset]), e === document && (e = e.documentElement), "undefined" != typeof e.nodeType && ! function () {
+        return "scrollParent" === e ? e = t.scrollParents[0] : "window" === e && (e = [pageXOffset, pageYOffset, innerWidth + pageXOffset, innerHeight + pageYOffset]), e === document && (e = e.documentElement), "undefined" != typeof e.nodeType && !function () {
             var t = e,
                 o = a(e),
                 i = o,
@@ -194,6 +195,7 @@
             })
         }(), e
     }
+
     var E = function () {
             function t(t, e) {
                 for (var o = 0; o < e.length; o++) {
@@ -201,6 +203,7 @@
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(t, i.key, i)
                 }
             }
+
             return function (e, o, i) {
                 return o && t(e.prototype, o), i && t(e, i), e
             }
@@ -241,6 +244,7 @@
             function t() {
                 i(this, t)
             }
+
             return E(t, [{
                 key: "on",
                 value: function (t, e, o) {
@@ -317,6 +321,7 @@
                 }
                 return o
             }
+
             return function (e, o) {
                 if (Array.isArray(e)) return e;
                 if (Symbol.iterator in Object(e)) return t(e, o);
@@ -330,6 +335,7 @@
                     i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(t, i.key, i)
                 }
             }
+
             return function (e, o, i) {
                 return o && t(e.prototype, o), i && t(e, i), e
             }
@@ -378,7 +384,7 @@
                 t.position(!1)
             }), _()
         };
-    ! function () {
+    !function () {
         var t = null,
             e = null,
             o = null,
@@ -441,6 +447,7 @@
                     "undefined" != typeof t.initialize && t.initialize.call(o)
                 }), this.position()
             }
+
             return v(e, t), E(e, [{
                 key: "getClass",
                 value: function () {
@@ -635,7 +642,7 @@
                             A = this.target.ownerDocument,
                             T = A.defaultView,
                             S = void 0;
-                        return T.innerHeight > A.documentElement.clientHeight && (S = this.cache("scrollbar-size", l), E.viewport.bottom -= S.height), T.innerWidth > A.documentElement.clientWidth && (S = this.cache("scrollbar-size", l), E.viewport.right -= S.width), ["", "static"].indexOf(A.body.style.position) !== -1 && ["", "static"].indexOf(A.body.parentElement.style.position) !== -1 || (E.page.bottom = A.body.scrollHeight - v - r, E.page.right = A.body.scrollWidth - m - n), "undefined" != typeof this.options.optimizations && this.options.optimizations.moveElement !== !1 && "undefined" == typeof this.targetModifier && ! function () {
+                        return T.innerHeight > A.documentElement.clientHeight && (S = this.cache("scrollbar-size", l), E.viewport.bottom -= S.height), T.innerWidth > A.documentElement.clientWidth && (S = this.cache("scrollbar-size", l), E.viewport.right -= S.width), ["", "static"].indexOf(A.body.style.position) !== -1 && ["", "static"].indexOf(A.body.parentElement.style.position) !== -1 || (E.page.bottom = A.body.scrollHeight - v - r, E.page.right = A.body.scrollWidth - m - n), "undefined" != typeof this.options.optimizations && this.options.optimizations.moveElement !== !1 && "undefined" == typeof this.targetModifier && !function () {
                             var e = t.cache("target-offsetparent", function () {
                                     return f(t.target)
                                 }),
@@ -697,7 +704,7 @@
                                 } else t.top ? l.top = o.top + "px" : l.bottom = o.bottom + "px", t.left ? l.left = o.left + "px" : l.right = o.right + "px"
                             },
                             p = !1;
-                        if ((o.page.top || o.page.bottom) && (o.page.left || o.page.right) ? (l.position = "absolute", d(o.page, t.page)) : (o.viewport.top || o.viewport.bottom) && (o.viewport.left || o.viewport.right) ? (l.position = "fixed", d(o.viewport, t.viewport)) : "undefined" != typeof o.offset && o.offset.top && o.offset.left ? ! function () {
+                        if ((o.page.top || o.page.bottom) && (o.page.left || o.page.right) ? (l.position = "absolute", d(o.page, t.page)) : (o.viewport.top || o.viewport.bottom) && (o.viewport.left || o.viewport.right) ? (l.position = "fixed", d(o.viewport, t.viewport)) : "undefined" != typeof o.offset && o.offset.top && o.offset.left ? !function () {
                                 l.position = "absolute";
                                 var i = e.cache("target-offsetparent", function () {
                                     return f(e.target)
@@ -755,6 +762,7 @@
                 }
                 return o
             }
+
             return function (e, o) {
                 if (Array.isArray(e)) return e;
                 if (Symbol.iterator in Object(e)) return t(e, o);
@@ -819,12 +827,12 @@
                 }) : l === !0 && (l = ["top", "left", "right", "bottom"]), l = l || [];
                 var w = [],
                     C = [];
-                o < b[1] && (l.indexOf("top") >= 0 ? (o = b[1], w.push("top")) : C.push("top")), o + s > b[3] && (l.indexOf("bottom") >= 0 ? (o = b[3] - s, w.push("bottom")) : C.push("bottom")), i < b[0] && (l.indexOf("left") >= 0 ? (i = b[0], w.push("left")) : C.push("left")), i + f > b[2] && (l.indexOf("right") >= 0 ? (i = b[2] - f, w.push("right")) : C.push("right")), w.length && ! function () {
+                o < b[1] && (l.indexOf("top") >= 0 ? (o = b[1], w.push("top")) : C.push("top")), o + s > b[3] && (l.indexOf("bottom") >= 0 ? (o = b[3] - s, w.push("bottom")) : C.push("bottom")), i < b[0] && (l.indexOf("left") >= 0 ? (i = b[0], w.push("left")) : C.push("left")), i + f > b[2] && (l.indexOf("right") >= 0 ? (i = b[2] - f, w.push("right")) : C.push("right")), w.length && !function () {
                     var t = void 0;
                     t = "undefined" != typeof e.options.pinnedClass ? e.options.pinnedClass : e.getClass("pinned"), g.push(t), w.forEach(function (e) {
                         g.push(t + "-" + e)
                     })
-                }(), C.length && ! function () {
+                }(), C.length && !function () {
                     var t = void 0;
                     t = "undefined" != typeof e.options.outOfBoundsClass ? e.options.outOfBoundsClass : e.getClass("out-of-bounds"), g.push(t), C.forEach(function (e) {
                         g.push(t + "-" + e)
@@ -897,6 +905,7 @@
             }
             return o
         }
+
         return function (e, o) {
             if (Array.isArray(e)) return e;
             if (Symbol.iterator in Object(e)) return t(e, o);

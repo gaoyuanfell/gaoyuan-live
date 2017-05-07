@@ -1,10 +1,11 @@
-import { Http } from '@angular/http';
-import { Injectable } from '@angular/core';
+import {Http} from '@angular/http';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class LineSendService {
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
     delete(body = {}) {
         return this.http.post('/lineSend/delete.htm', body)
@@ -18,7 +19,7 @@ export class LineSendService {
         return this.http.post('/lineSend/addPraised.htm', body)
     }
 
-    insert(body = {}){
+    insert(body = {}) {
         return this.http.post('/lineSend/insert.htm', body)
     }
 }
