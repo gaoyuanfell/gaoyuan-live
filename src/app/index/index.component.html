@@ -11,6 +11,9 @@
             <li class="nav-item" routerLink="/login" routerLinkActive="active">
                 <a class="nav-link" href="javascript:void 0">Login <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item" routerLink="/line" routerLinkActive="active">
+                <a class="nav-link" href="javascript:void 0">Line <span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -70,7 +73,7 @@
                                     <p>{{b.introduce}}</p>
                                     <div data-grid="images">
                                         <div *ngFor="let img of b.imgs">
-                                            <img [src]="img.url" data-action="zoom" data-width="{{img.width}}" data-height="{{img.height}}">
+                                            <img [src]="img.url" [attr.data-width]="img.width" [attr.data-height]="img.height" data-action="zoom">
                                         </div>
                                     </div>
                                 </div>

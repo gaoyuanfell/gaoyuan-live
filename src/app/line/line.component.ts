@@ -17,7 +17,7 @@ export class LineComponent implements OnInit {
     userId: number;
     line: Line = {};
     user: User = $Storage('user');
-    userList: User[] = [];
+    // userList: User[] = [];
     lineList: Line[] = [];
     page: Page<any> = {
         pageSize: 50
@@ -27,7 +27,7 @@ export class LineComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getUserList();
+        // this.getUserList();
         this.getLineList();
         this.userId = this.user.id;
     }
@@ -45,13 +45,13 @@ export class LineComponent implements OnInit {
         })
     }
 
-    getUserList() {
-        this.userService.userList().subscribe((data: Result<User[]>) => {
-            if (data.code == 200) {
-                this.userList = data.doc;
-            }
-        })
-    }
+    // getUserList() {
+    //     this.userService.userList().subscribe((data: Result<User[]>) => {
+    //         if (data.code == 200) {
+    //             this.userList = data.doc;
+    //         }
+    //     })
+    // }
 
     getLineList() {
         this.lineService.linePage({...this.page}).subscribe((data: Result<Page<Line>>) => {

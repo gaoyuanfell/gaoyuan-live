@@ -1,0 +1,228 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    background: #db4437;
+    padding: 0 0 0 8px;
+    overflow: visible;
+
+    font-size: 21px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, .3);
+    color: #fff;
+    .header-cx {
+        height: 64px;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-orient: horizontal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        position: relative;
+        .cx-menu {
+            -webkit-user-select: none;
+            -webkit-transition: background .3s;
+            transition: background .3s;
+            border: 0;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-block;
+            height: 48px;
+            outline: none;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            -webkit-tap-highlight-color: transparent;
+            width: 48px;
+            z-index: 0;
+            .cx-icon {
+                color: rgba(255, 255, 255, 0.749);
+                fill: rgba(255, 255, 255, 0.749);
+                display: inline-block;
+                height: 24px;
+                transform: translate(0, 50%);
+                width: 24px;
+            }
+        }
+        .cx-title {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            overflow: hidden;
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            -webkit-flex-shrink: 1;
+            flex-shrink: 1;
+            margin-left: 12px;
+        }
+        .cx-buttons {
+            display: flex;
+            min-width: 120px;
+            height: 60px;
+            line-height: 58px;
+            vertical-align: middle;
+            padding-left: 30px;
+            padding-right: 30px;
+            position: relative;
+            text-align: right;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+            white-space: nowrap;
+            .cx-icon {
+                &:first-child {
+                    padding: 0 0 0 0;
+                }
+                cursor: pointer;
+                display: inline-block;
+                flex: 0 0 auto;
+                padding: 0 0 0 15px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+@keyframes slideNav {
+    0% {
+        -webkit-transform: translateX(-210px);
+        transform: translateX(-210px)
+    }
+}
+
+@-webkit-keyframes slideNav {
+    0% {
+        -webkit-transform: translateX(-210px);
+        transform: translateX(-210px)
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .menu {
+        display: block !important;
+        width: 210px;
+    }
+}
+
+.menu {
+    display: none;
+    -webkit-animation: slideNav .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    animation: slideNav .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    z-index: 2;
+    .menu-content {
+        position: absolute;
+        top: 64px;
+        bottom: 0;
+        left: 0;
+        padding-top: 16px;
+        width: 100%;
+        .menu-body {
+            width: 100%;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            .menu-item {
+                outline: none;
+                cursor: pointer;
+                padding: 0 12px 0 20px;
+                color: rgba(0, 0, 0, 0.87);
+                font-size: 14px;
+                height: 48px;
+                font-weight: 500;
+                opacity: .85;
+                line-height: 50px;
+                overflow: hidden;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-transition: background-color .3s cubic-bezier(0, 0, 0.2, 1);
+                transition: background-color .3s cubic-bezier(0, 0, 0.2, 1);
+                &.active {
+                    color: #db4437;
+                }
+                &:hover{
+                    background-color: #e7e7e7;
+                }
+                .menu-icon {
+                    display: inline-block;
+                    height: 100%;
+                    padding-right: 22px;
+                    color: #757575;
+                    fill: #757575;
+                    cursor: pointer;
+                    .icon-svg{
+                        vertical-align: middle;
+                    }
+                }
+                .menu-text {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    word-break: break-all;
+                    -webkit-user-select: none;
+                    -webkit-flex: auto;
+                    flex: auto;
+                }
+            }
+            .menu-group {
+                padding-bottom: 8px;
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 10px;
+            }
+        }
+        .menu-footer {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .context {
+        margin-left: 0 !important;
+    }
+}
+.context {
+    min-height: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    margin-left: 210px;
+    .context-top-height {
+        height: 64px;
+    }
+}
+

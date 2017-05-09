@@ -16,6 +16,7 @@ import {LineModule} from './line/line.module';
 import {BranchModule} from './branch/branch.module';
 import {LoginModule} from "./login/login.module";
 import {IndexModule} from "./index/index.module";
+import {HomeModule} from "./home/home.module";
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import {IndexModule} from "./index/index.module";
         BranchModule,
         LoginModule,
         IndexModule,
+        HomeModule
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},

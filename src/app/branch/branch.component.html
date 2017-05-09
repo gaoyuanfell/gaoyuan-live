@@ -45,8 +45,8 @@
 
 <div class="card" *ngFor="let branch of branchList">
     <div class="card-image">
-        <div class="img-item" *ngFor="let url of branch.urls">
-            <img width="200" [src]="url">
+        <div class="img-item" *ngFor="let url of branch.imgs">
+            <img width="200" [src]="url.url">
         </div>
     </div>
     <div class="card-block">
