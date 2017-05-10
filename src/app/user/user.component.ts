@@ -1,5 +1,5 @@
 import {UserService} from './../../service/user.service';
-import {User, Result} from './../module';
+import {User, Result} from '../model';
 import {Http} from '@angular/http';
 import {Component, OnInit} from '@angular/core';
 import {fadeInLOutR} from '../../animations/fade-in-l-out-r'

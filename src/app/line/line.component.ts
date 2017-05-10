@@ -1,6 +1,6 @@
 import {UserService} from './../../service/user.service';
 import {LineService} from './../../service/line.service';
-import {User, Line, Result, Page} from './../module';
+import {User, Line, Result, Page} from '../model';
 import {ActivatedRoute, Router, Data} from '@angular/router';
 import {FormGroup, FormControl} from '@angular/forms';
 import {Http} from '@angular/http';

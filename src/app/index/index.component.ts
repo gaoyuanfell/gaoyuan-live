@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LineService} from "../../service/line.service";
-import {Line, Page, Result, User} from "../module";
+import {Line, Page, Result, User} from "../model";
 import {$Storage} from "../storage";
 import {Router} from "@angular/router";
 

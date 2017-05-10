@@ -8,8 +8,9 @@ import {AppRoutingModule} from './app-routing.module';
 /*拦截器*/
 import {httpInterceptor} from '../providers/Interceptor';
 import {DataPipe} from '../pipe/pipe';
-import {ComponentModule} from "./component";
-//组件
+import {ComponentModule} from "./module";
+
+//模块
 import {MapModule} from './map/map.module';
 import {UserModule} from './user/user.module';
 import {LineModule} from './line/line.module';
@@ -18,6 +19,8 @@ import {LoginModule} from "./login/login.module";
 import {IndexModule} from "./index/index.module";
 import {HomeModule} from "./home/home.module";
 import {Index2Module} from "./index2/index2.module";
+
+
 
 @NgModule({
     declarations: [

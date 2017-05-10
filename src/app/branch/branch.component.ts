@@ -5,7 +5,7 @@ import {LineService} from './../../service/line.service';
 import {Http} from '@angular/http';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
-import {Branch, Line, Result, Page} from './../module';
+import {Branch, Line, Result, Page} from '../model';
 
 @Component({
     selector: 'app-branch',

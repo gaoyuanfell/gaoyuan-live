@@ -1,4 +1,4 @@
-import {ComponentModule} from '../component'
+import {ComponentModule} from '../module'
 import {NgModule} from '@angular/core';
 import {LineRoutingModule} from './line-routing.module';
 import {LineComponent} from './line.component'

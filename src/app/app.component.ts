@@ -1,6 +1,6 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
 import {fadeInLOutR} from '../animations/fade-in-l-out-r'
-import {Line, Page} from "./module";
+import {Line, Page} from "./model";
 
 @Component({
     selector: 'app-root',

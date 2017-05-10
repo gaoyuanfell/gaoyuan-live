@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {Page} from "../module";
+import {Page} from "../../model";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {

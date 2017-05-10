@@ -2,7 +2,7 @@ import {ReplyService} from './../../../service/reply.service';
 import {CommentService} from './../../../service/comment.service';
 import {LineSendService} from './../../../service/line-send.service';
 import {LineService} from './../../../service/line.service';
-import {User, Line, Result, Page, Comment, LineSend, Reply} from './../../module';
+import {User, Line, Result, Page, Comment, LineSend, Reply} from '../../model';
 import {Http} from '@angular/http';
 import {ActivatedRoute, Router, Params} from '@angular/router';
 import {Component, OnInit} from '@angular/core';

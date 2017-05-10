@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {IndexRoutingModule} from './index-routing.module';
-import {ComponentModule} from "../component";
+import {ComponentModule} from "../module";
 import {IndexComponent} from "./index.component";
 
 @NgModule({
