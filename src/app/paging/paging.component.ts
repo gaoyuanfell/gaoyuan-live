@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Page} from "../module";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
@@ -14,19 +14,23 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     styleUrls: ['./paging.component.scss'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
-export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges {
+export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges, AfterViewInit {
+
+    ngAfterViewInit(): void {
+
+    }
+
     ngOnChanges(changes: SimpleChanges): void {
         console.info(changes)
     }
 
     writeValue(obj: Page<any>): void {
-        console.info(obj);
         obj && (this.page = obj);
         this.init();
     }
 
     registerOnChange(fn: any): void {
-
+        this.pageOnChange = fn;
     }
 
     registerOnTouched(fn: any): void {
@@ -48,9 +52,46 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges 
     @Input() pageText: string = '...';
     @Input() pageShow: number = 3;
     pageList: PageData[];
+    private goNum: number;
+
+    @Output() goPage: EventEmitter<Page<any>> = new EventEmitter<Page<any>>();
+
+    private pageOnChange: (value: any) => void = (value) => {
+    };
 
     init() {
         this.pageList = this.getPageList(this.pageShow, this.page.totalPage, this.page.pageIndex);
+    }
+
+    go(event: any, input: HTMLInputElement) {
+        let pageIndex = parseInt(event.target.getAttribute('data-number'));
+        let type = parseInt(event.target.getAttribute('data-type'));
+        if (isNaN(pageIndex) || isNaN(type)) return;
+
+        switch (type) {
+            case 1:
+                if (this.page.pageIndex == 1) return;
+                this.page.pageIndex += pageIndex;
+                break;
+            case 2:
+                this.page.pageIndex = pageIndex;
+                break;
+            case 3:
+                if (this.page.totalPage == this.page.pageIndex) return;
+                this.page.pageIndex += pageIndex;
+                break;
+            case 4:
+                if (pageIndex < 1 || pageIndex > this.page.totalPage) {
+                    pageIndex = 1;
+                    this.goNum = 1;
+                }
+                this.page.pageIndex = pageIndex;
+                input.select();
+                break;
+        }
+        this.pageOnChange(this.page);
+        this.init();
+        this.goPage.emit();
     }
 
     getPageList(n, tp, p) {

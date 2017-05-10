@@ -4,7 +4,7 @@
     totalPage:<input type="number" [(ngModel)]="page.totalPage">
     pageIndex:<input type="number" [(ngModel)]="page.pageIndex">
 
-    <app-paging [(ngModel)]="page"></app-paging>
+    <app-paging [(ngModel)]="page" (goPage)="go()"></app-paging>
 
     <div class="row h-50 align-items-center" hidden>
         <div class="col-lg-3 h-50 table-bordered"></div>

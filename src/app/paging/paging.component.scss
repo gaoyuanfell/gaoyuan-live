@@ -1,12 +1,18 @@
 .btn-toolbar{
     .btn{
-        min-width: 30px;
         height: 30px;
+        cursor: pointer;
+    }
+    .btn-page{
+        width: 40px;
     }
     .page-input{
         width: 40px;
     }
     .select{
         background-color: #2aabd2;
+    }
+    .display{
+        cursor: no-drop;
     }
 }

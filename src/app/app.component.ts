@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.info($('body'));
-        console.info(Tether)
+        // console.info($('body'));
+        // console.info(Tether)
     }
 
 }

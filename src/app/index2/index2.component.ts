@@ -11,9 +11,12 @@ import {PagingComponent} from "../paging/paging.component";
 export class Index2Component implements OnInit {
 
     page: Page<any> = {
-        totalPage: 15,
+        totalPage: 120,
         pageIndex: 10
     };
+
+    go(){
+    }
 
     constructor() {
     }
