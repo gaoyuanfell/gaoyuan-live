@@ -1,0 +1,11 @@
+<div class="btn-toolbar">
+    <div class="btn-group mr-2">
+        <button type="button" class="btn btn-secondary">上一页</button>
+        <button *ngFor="let p of pageList;index as index; count as count" type="button" [ngClass]="{'select':p.number == page.pageIndex}" class="btn btn-secondary">{{p.type ? p.number : p.text}}</button>
+        <button type="button" class="btn btn-secondary">下一页</button>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" id="btnGroupAddon">跳转到</span>
+        <input type="text" class="form-control page-input" placeholder="">
+    </div>
+</div>

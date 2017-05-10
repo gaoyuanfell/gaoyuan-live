@@ -4,3 +4,5 @@ interface NodeModule {
     id: string;
 }
 declare var AMap;
+declare var $;
+declare var Tether;

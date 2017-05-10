@@ -17,6 +17,7 @@ import {BranchModule} from './branch/branch.module';
 import {LoginModule} from "./login/login.module";
 import {IndexModule} from "./index/index.module";
 import {HomeModule} from "./home/home.module";
+import {Index2Module} from "./index2/index2.module";
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import {HomeModule} from "./home/home.module";
         BranchModule,
         LoginModule,
         IndexModule,
+        Index2Module,
         HomeModule
     ],
     providers: [
