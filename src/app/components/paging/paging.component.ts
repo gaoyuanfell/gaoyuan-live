@@ -1,6 +1,7 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewContainerRef} from '@angular/core';
 import {Page} from "../../model";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {$Storage} from "../../storage";
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -12,7 +13,8 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     selector: 'app-paging',
     templateUrl: './paging.component.html',
     styleUrls: ['./paging.component.scss'],
-    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
+    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
+    // host: {'class': 'asdasdasd'}
 })
 export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges, AfterViewInit {
 
@@ -25,7 +27,11 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges,
     }
 
     writeValue(obj: Page<any>): void {
-        obj && (this.page = obj);
+        if (obj) {
+            this.page.pageIndex && (obj.pageIndex = this.page.pageIndex);
+            Object.assign(this.page, obj);
+            this.pageOnChange(this.page);
+        }
         this.init();
     }
 
@@ -41,13 +47,17 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges,
         this.init();
     }
 
-    constructor() {
+    constructor(private vcRef: ViewContainerRef) {
+        console.info(vcRef);
     }
 
-    private page: Page<any> = {
-        totalPage: 0,
-        pageIndex: 0
-    };
+    setPageIndex(obj, key, value) {
+        if (key == 'pageIndex' || key == 'totalPage') {
+            this.init();
+        }
+    }
+
+    private page: Page<any> = $Storage('page', {}, {set: this.setPageIndex.bind(this)});
 
     @Input() pageText: string = '...';
     @Input() pageShow: number = 3;
@@ -66,8 +76,7 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges,
     go(event: any, input: HTMLInputElement) {
         let pageIndex = parseInt(event.target.getAttribute('data-number'));
         let type = parseInt(event.target.getAttribute('data-type'));
-        if (isNaN(pageIndex) || isNaN(type)) return;
-
+        if (isNaN(pageIndex) || isNaN(type) || isNaN(parseInt(String(this.page.pageIndex)))) return;
         switch (type) {
             case 1:
                 if (this.page.pageIndex == 1) return;
@@ -94,7 +103,13 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges,
         this.goPage.emit();
     }
 
-    getPageList(n, tp, p) {
+    getPageList(n: number, tp: number, p: number) {
+        n = +n;
+        tp = +tp;
+        p = +p;
+        if (p > tp) {
+            p = 1
+        }
         let arr: PageData[] = [];
         let s = n * 2 + 5;
         if (tp >= s) {

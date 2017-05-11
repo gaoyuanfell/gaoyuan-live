@@ -1,4 +1,9 @@
-export interface Page<T> {
+/*查询接口*/
+export interface Query{
+
+}
+/*分页接口*/
+export interface Page<T> extends Query{
     pageIndex?: number
     pageSize?: number
     pageStart?: number
@@ -6,13 +11,16 @@ export interface Page<T> {
     totalCount?: number
     list?: T[]
 }
-
+/*请求结果接口*/
 export interface Result<T> {
     code?: number
     doc?: T
     msg?: string
 }
 
+/*
+* 以下为业务bean
+* */
 export interface Id{
     state?: number
     createDate?: Date

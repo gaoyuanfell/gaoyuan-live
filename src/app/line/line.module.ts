@@ -1,4 +1,4 @@
-import {ComponentModule} from '../module'
+import {Module} from '../module'
 import {NgModule} from '@angular/core';
 import {LineRoutingModule} from './line-routing.module';
 import {LineComponent} from './line.component'
@@ -8,8 +8,9 @@ import {LineDetailComponent} from './line-detail/line-detail.component'
         LineComponent,
         LineDetailComponent,
     ],
+    exports: [Module],
     imports: [
-        ComponentModule,
+        Module,
         LineRoutingModule,
     ]
 })

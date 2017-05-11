@@ -1,6 +1,6 @@
-<div class="btn-toolbar">
+<div class="btn-toolbar justify-content-end">
     <div class="btn-group mr-2" (click)="go($event)">
-        <button data-type="1" data-number="-1" type="button" class="btn btn-secondary" [ngClass]="{'display': page.pageIndex == 1}">上一页</button>
+        <button data-type="1" data-number="-1" type="button" class="btn btn-secondary" [ngClass]="{'display': !page.pageIndex}">上一页</button>
         <button data-type="2" [attr.data-number]="p.number" *ngFor="let p of pageList" type="button" [ngClass]="{'select':p.number == page.pageIndex,'display': !p.type}" class="btn btn-secondary btn-page p-0">{{p.type ? p.number : p.text}}</button>
         <button data-type="3" data-number="1" type="button" class="btn btn-secondary" [ngClass]="{'display': page.pageIndex == page.totalPage}">下一页</button>
     </div>

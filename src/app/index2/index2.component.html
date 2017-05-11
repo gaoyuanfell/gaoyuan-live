@@ -1,14 +1,77 @@
 <div class="container-fluid h-100">
 
 
-    totalPage:<input type="number" [(ngModel)]="page.totalPage">
-    pageIndex:<input type="number" [(ngModel)]="page.pageIndex">
+    <div class="row h-50">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td>Larry the Bird</td>
+                    <td>@twitter</td>
+                    <td>@fat</td>
+                </tr>
+                </tbody>
+            </table>
+            <app-paging [(ngModel)]="page" (goPage)="go()"><i>1</i></app-paging>
 
-    <app-paging [(ngModel)]="page" (goPage)="go()"></app-paging>
+            totalPage:<input class="form-control" type="text" [(ngModel)]="page.totalPage">
+            pageIndex:<input class="form-control" type="text" [(ngModel)]="page.pageIndex">
 
-    <div class="row h-50 align-items-center" hidden>
-        <div class="col-lg-3 h-50 table-bordered"></div>
-        <div class="col-lg-6 h-50 table-bordered"></div>
-        <div class="col-lg-3 h-50 table-bordered"></div>
+        </div>
+        <div class="col-lg-3">
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+            </button>
+
+            <button type="button" class="btn btn-primary" [modal]="modal" [target]="exampleModal">
+                Launch demo modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" role="dialog" id="exampleModal" #exampleModal>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

@@ -11,7 +11,8 @@ import {Line, Page} from "./model";
 })
 export class AppComponent implements OnInit {
     page: Page<any> = {
-        pageSize: 10
+        totalPage: 120,
+        pageIndex: 10,
     }
 
     constructor(private renderer: Renderer2) {
@@ -24,5 +25,7 @@ export class AppComponent implements OnInit {
         // console.info($('body'));
         // console.info(Tether)
     }
+
+    go(){}
 
 }

@@ -8,18 +8,23 @@ import {Page} from "../model";
 })
 export class Index2Component implements OnInit {
 
-    page: Page<any> = {
-        totalPage: 120,
-        pageIndex: 10
-    };
-
-    go(){
-    }
-
     constructor() {
     }
 
     ngOnInit() {
     }
 
+    modal:any = {a:1};
+
+    page: Page<any> = {
+        totalPage: 120,
+        pageIndex: 10,
+    };
+
+    go() {
+    }
+
+    add(){
+        this.page.pageIndex += 1;
+    }
 }

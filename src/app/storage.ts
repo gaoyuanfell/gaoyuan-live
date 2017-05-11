@@ -1,4 +1,4 @@
-export function $Storage(_key, agent = {}) {
+export function $Storage(_key: string, agent: any = {}, option: any = {}) {
     if (window.localStorage.getItem(_key)) {
         let s = JSON.parse(window.localStorage.getItem(_key));
         Object.assign(agent, s);
@@ -23,6 +23,8 @@ export function $Storage(_key, agent = {}) {
             let b = Reflect.set(target, key, value, receiver);
             if (b) {
                 window.localStorage.setItem(_key, JSON.stringify(target))
+                option.set && option.set(target, key, value);
+
             }
             return b;
         },

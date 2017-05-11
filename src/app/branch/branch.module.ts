@@ -1,14 +1,15 @@
 import {NgModule} from '@angular/core';
-import {ComponentModule} from '../module'
+import {Module} from '../module'
 
 import {BranchRoutingModule} from './branch-routing.module';
 import {BranchComponent} from './branch.component';
 
 @NgModule({
     imports: [
-        ComponentModule,
+        Module,
         BranchRoutingModule
     ],
+    exports: [Module],
     declarations: [BranchComponent]
 })
 export class BranchModule {

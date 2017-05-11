@@ -8,7 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 /*拦截器*/
 import {httpInterceptor} from '../providers/Interceptor';
 import {DataPipe} from '../pipe/pipe';
-import {ComponentModule} from "./module";
+import {Module} from "./module";
 
 //模块
 import {MapModule} from './map/map.module';
@@ -21,16 +21,18 @@ import {HomeModule} from "./home/home.module";
 import {Index2Module} from "./index2/index2.module";
 
 
-
+//瓦特法克
 @NgModule({
     declarations: [
         AppComponent,
         DataPipe,
     ],
+    exports:[],
     imports: [
-        ComponentModule,
+        Module,
         HttpModule,
         AppRoutingModule,
+
         MapModule,
         UserModule,
         LineModule,

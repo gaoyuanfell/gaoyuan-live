@@ -2,16 +2,15 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import {Index2RoutingModule} from './index2-routing.module';
 import {Index2Component} from "./index2.component";
-import {ComponentModule} from "../module";
-import {Components} from "../components";
-
+import {Module} from "../module";
 
 @NgModule({
     imports: [
-        ComponentModule,
+        Module,
         Index2RoutingModule
     ],
-    declarations: [Index2Component, Components],
+    exports: [Module],
+    declarations: [Index2Component],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Index2Module {
