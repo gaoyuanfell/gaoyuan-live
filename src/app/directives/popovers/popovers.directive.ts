@@ -52,12 +52,13 @@ export class PopoversDirective implements AfterViewInit {
             });
 
             this.renderer.listen(this.el.nativeElement, 'mouseleave', () => {
-                if(this.clearTime && this.state == -1){
-                    clearTimeout(this.clearTime);
-                    this.state = 0;
-                    this.clearTime = 0;
-                    this.popoversEl && document.body.removeChild(this.popoversEl);
-                }
+                // if(this.clearTime && this.state == -1){
+                //     clearTimeout(this.clearTime);
+                //     this.popoversEl && document.body.removeChild(this.popoversEl);
+                //     this.tether && this.tether.destroy()
+                //     this.state = 0;
+                //     this.clearTime = 0;
+                // }
                 !this.stateFocus && this.close();
             });
         }
@@ -70,18 +71,15 @@ export class PopoversDirective implements AfterViewInit {
 
     show() {
         if (this.popoversEl && this.state == 0) {
+            this.popoversEl.classList.add('show');
             document.body.appendChild(this.popoversEl);
-            this.state = -1;
-            this.clearTime = setTimeout(() => {
-                this.popoversEl.classList.add('show');
-                this.state = 1;
-                this.tether = new Tether({
-                    element: this.popoversEl,
-                    target: this.el.nativeElement,
-                    attachment: this.pAttachment[this.placement][0],
-                    targetAttachment: this.pAttachment[this.placement][1],
-                });
-            }, 20)
+            this.state = 1;
+            this.tether = new Tether({
+                element: this.popoversEl,
+                target: this.el.nativeElement,
+                attachment: this.pAttachment[this.placement][0],
+                targetAttachment: this.pAttachment[this.placement][1],
+            });
         }
     }
 
