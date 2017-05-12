@@ -1,7 +1,8 @@
-import {ModalDirective} from "./directives/index";
+import {} from "./directives/index";
+import {PopoversDirective} from "./directives/popovers/popovers.directive";
 
 const Directives = [
-    ModalDirective
+    PopoversDirective
 ]
 
 export {Directives}

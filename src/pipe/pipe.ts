@@ -1,3 +1,7 @@
 import {DataPipe} from './data.pipe';
 
-export {DataPipe}
+const Pipes = [
+    DataPipe
+]
+
+export {Pipes}

@@ -7,7 +7,6 @@ import {AppRoutingModule} from './app-routing.module';
 
 /*拦截器*/
 import {httpInterceptor} from '../providers/Interceptor';
-import {DataPipe} from '../pipe/pipe';
 import {Module} from "./module";
 
 //模块
@@ -20,12 +19,10 @@ import {IndexModule} from "./index/index.module";
 import {HomeModule} from "./home/home.module";
 import {Index2Module} from "./index2/index2.module";
 
-
 //瓦特法克
 @NgModule({
     declarations: [
         AppComponent,
-        DataPipe,
     ],
     exports:[],
     imports: [

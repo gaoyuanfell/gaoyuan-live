@@ -23,7 +23,7 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges,
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.info(changes)
+
     }
 
     writeValue(obj: Page<any>): void {

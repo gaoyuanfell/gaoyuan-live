@@ -14,7 +14,34 @@ export class Index2Component implements OnInit {
     ngOnInit() {
     }
 
-    modal:any = {a:1};
+    modal:any = {
+        ok:function () {
+            console.info('ok')
+        }
+    };
+
+    modal1:any = {
+        no:function () {
+            console.info('no')
+        }
+    };
+    modal2:any = {
+        no:function () {
+            console.info('no')
+        }
+    };
+
+    modal3:any = {
+        no:function () {
+            console.info('no')
+        }
+    };
+
+    modal4:any = {
+        no:function () {
+            console.info('no')
+        }
+    };
 
     page: Page<any> = {
         totalPage: 120,

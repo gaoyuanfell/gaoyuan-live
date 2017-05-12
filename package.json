@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
+    "dev:g": "ng serve --host 192.168.100.170",
     "build": "ng build --aot --prod --sourcemap -w",
     "test": "ng test",
     "lint": "ng lint",

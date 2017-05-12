@@ -41,37 +41,42 @@
 
         </div>
         <div class="col-lg-3">
+            <h3>123</h3>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
+            <button type="button" class="btn btn-primary" (click)="modal.show()">
+                show
             </button>
 
-            <button type="button" class="btn btn-primary" [modal]="modal" [target]="exampleModal">
-                Launch demo modal
-            </button>
+            <a appPopovers [p-placement]="'right'" [p-hover]="'hover'" [p-focus]="'focus'" [p-title]="'标题'" [p-content]="'你好呀！！！！！！！！！！！'" tabindex="-1" id="blur" class="btn btn-primary">blur</a>
 
-            <!-- Modal -->
-            <div class="modal fade" #exampleModal>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
+            <app-modal [modal]="modal4">
+                123123123
+            </app-modal>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-modal [modal]="modal3">
+                <button type="button" class="btn btn-primary" (click)="modal4.trigger()">
+                    trigger4
+                </button>
+            </app-modal>
 
+            <app-modal [modal]="modal2">
+                <button type="button" class="btn btn-primary" (click)="modal3.trigger()">
+                    trigger3
+                </button>
+            </app-modal>
+
+
+            <app-modal [modal]="modal1">
+                <button type="button" class="btn btn-primary" (click)="modal2.trigger()">
+                    trigger2
+                </button>
+            </app-modal>
+
+            <app-modal [modal]="modal">
+                <button type="button" class="btn btn-primary" (click)="modal1.trigger()">
+                    trigger1
+                </button>
+            </app-modal>
         </div>
     </div>
 </div>
