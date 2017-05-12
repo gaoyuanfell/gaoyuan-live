@@ -23,13 +23,14 @@ export class PopoversDirective implements AfterViewInit {
     private contentEl: HTMLDivElement;
     private state: number = 0;// 0 隐藏 1 显示 -1 等待
     private stateFocus: number = 0;// 0 未会焦点 1 获取焦点
-    private tether:any;
+    private tether: any;
+    private clearTime;
 
     initEvent() {
         let focus = this.focus;
         let hover = this.hover;
 
-        if(focus == 'focus'){
+        if (focus == 'focus') {
             this.renderer.listen(this.el.nativeElement, 'focus', () => {
                 this.stateFocus = 1;
                 this.show();
@@ -39,18 +40,24 @@ export class PopoversDirective implements AfterViewInit {
                 this.stateFocus = 0;
                 this.close();
             });
-        }else{
+        } else {
             this.renderer.listen(this.el.nativeElement, 'click', () => {
                 this.trigger();
             });
         }
 
-        if(hover == 'hover'){
+        if (hover == 'hover') {
             this.renderer.listen(this.el.nativeElement, 'mouseover', () => {
                 !this.stateFocus && this.show();
             });
 
             this.renderer.listen(this.el.nativeElement, 'mouseleave', () => {
+                if(this.clearTime && this.state == -1){
+                    clearTimeout(this.clearTime);
+                    this.state = 0;
+                    this.clearTime = 0;
+                    this.popoversEl && document.body.removeChild(this.popoversEl);
+                }
                 !this.stateFocus && this.close();
             });
         }
@@ -63,18 +70,18 @@ export class PopoversDirective implements AfterViewInit {
 
     show() {
         if (this.popoversEl && this.state == 0) {
+            document.body.appendChild(this.popoversEl);
             this.state = -1;
-            setTimeout(() => {
+            this.clearTime = setTimeout(() => {
                 this.popoversEl.classList.add('show');
                 this.state = 1;
-            }, 50);
-            document.body.appendChild(this.popoversEl);
-            this.tether = new Tether({
-                element: this.popoversEl,
-                target: this.el.nativeElement,
-                attachment: this.pAttachment[this.placement][0],
-                targetAttachment: this.pAttachment[this.placement][1],
-            });
+                this.tether = new Tether({
+                    element: this.popoversEl,
+                    target: this.el.nativeElement,
+                    attachment: this.pAttachment[this.placement][0],
+                    targetAttachment: this.pAttachment[this.placement][1],
+                });
+            }, 20)
         }
     }
 
@@ -94,7 +101,6 @@ export class PopoversDirective implements AfterViewInit {
         if (!this.content) return;
         let popoversEl = this.popoversEl = document.createElement('div');
         popoversEl.classList.add(...this.pClass[this.placement]);
-
         if (this.title) {
             let titleEl = this.titleEl = document.createElement('h3');
             titleEl.classList.add('popover-title');
@@ -127,7 +133,7 @@ export class PopoversDirective implements AfterViewInit {
 
     };
 
-    top: string[] = [
+    private top: string[] = [
         'popover',
         'fade',
         'bs-tether-element',
@@ -139,7 +145,7 @@ export class PopoversDirective implements AfterViewInit {
         'bs-tether-target-attached-center',
     ];
 
-    bottom: string[] = [
+    private bottom: string[] = [
         'popover',
         'fade',
         'bs-tether-element',
@@ -150,7 +156,7 @@ export class PopoversDirective implements AfterViewInit {
         'bs-tether-target-attached-center',
     ];
 
-    left: string[] = [
+    private left: string[] = [
         'popover',
         'fade',
         'bs-tether-element',
@@ -163,7 +169,7 @@ export class PopoversDirective implements AfterViewInit {
         'bs-tether-target-attached-middle',
     ];
 
-    right: string[] = [
+    private right: string[] = [
         'popover',
         'fade',
         'bs-tether-element',

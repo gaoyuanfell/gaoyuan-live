@@ -1,5 +1,4 @@
-import {} from "./directives/index";
-import {PopoversDirective} from "./directives/popovers/popovers.directive";
+import {PopoversDirective} from "./directives/index";
 
 const Directives = [
     PopoversDirective

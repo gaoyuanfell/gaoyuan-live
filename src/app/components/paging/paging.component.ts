@@ -47,8 +47,7 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges,
         this.init();
     }
 
-    constructor(private vcRef: ViewContainerRef) {
-        console.info(vcRef);
+    constructor() {
     }
 
     setPageIndex(obj, key, value) {
