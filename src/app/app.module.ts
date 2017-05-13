@@ -10,6 +10,7 @@ import {httpInterceptor} from '../providers/Interceptor';
 import {Module} from "./module";
 
 //模块
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MapModule} from './map/map.module';
 import {UserModule} from './user/user.module';
 import {LineModule} from './line/line.module';
@@ -26,6 +27,7 @@ import {Index2Module} from "./index2/index2.module";
     ],
     exports:[],
     imports: [
+        NgbModule.forRoot(),
         Module,
         HttpModule,
         AppRoutingModule,

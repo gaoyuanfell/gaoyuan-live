@@ -6,6 +6,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class DataPipe implements PipeTransform {
     transform(value: any, args?: any): any {
+        console.info(value);
         return value;
     }
 }
