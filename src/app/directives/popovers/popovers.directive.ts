@@ -1,76 +1,4 @@
-import {AfterViewInit, Component, Directive, ElementRef, Input, Renderer2, TemplateRef, ViewContainerRef} from '@angular/core';
-
-@Component({
-    selector: 'app-popovers-window',
-    host: {
-        '[class]': 'pClass[placement]'
-    },
-    template: `
-        <h3 class="popover-title" *ngIf="title">{{title}}</h3>
-        <div class="popover-content">
-            <ng-content></ng-content>
-        </div>
-    `
-})
-export class PopoversDirectiveWindow {
-    @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
-    @Input() title: string;
-
-    private top: string[] = [
-        'popover',
-        'fade',
-        'bs-tether-element',
-        'bs-tether-abutted',
-        'bs-tether-abutted-top',
-        'bs-tether-target-attached-top',
-        'bs-tether-element-attached-bottom',
-        'bs-tether-element-attached-center',
-        'bs-tether-target-attached-center',
-    ];
-
-    private bottom: string[] = [
-        'popover',
-        'fade',
-        'bs-tether-element',
-        'bs-tether-abutted',
-        'bs-tether-element-attached-top',
-        'bs-tether-element-attached-center',
-        'bs-tether-target-attached-bottom',
-        'bs-tether-target-attached-center',
-    ];
-
-    private left: string[] = [
-        'popover',
-        'fade',
-        'bs-tether-element',
-        'bs-tether-enabled',
-        'bs-tether-abutted',
-        'bs-tether-abutted-left',
-        'bs-tether-target-attached-left',
-        'bs-tether-element-attached-right',
-        'bs-tether-element-attached-middle',
-        'bs-tether-target-attached-middle',
-    ];
-
-    private right: string[] = [
-        'popover',
-        'fade',
-        'bs-tether-element',
-        'bs-tether-enabled',
-        'bs-tether-target-attached-right',
-        'bs-tether-element-attached-left',
-        'bs-tether-element-attached-middle',
-        'bs-tether-target-attached-middle',
-    ];
-
-    private pClass = {
-        top: this.top.join(" "),
-        bottom: this.bottom.join(" "),
-        left: this.left.join(" "),
-        right: this.right.join(" "),
-    }
-}
-
+import {AfterViewInit, Directive, ElementRef, Input, Renderer2} from '@angular/core';
 
 @Directive({
     selector: '[appPopovers]',
@@ -82,14 +10,14 @@ export class PopoversDirective implements AfterViewInit {
         this.initEvent();
     }
 
-    constructor(private viewContainerRef: ViewContainerRef, private el: ElementRef, private renderer: Renderer2) {
+    constructor(private el: ElementRef, private renderer: Renderer2) {
 
     }
 
     @Input('p-focus') focus: string;
     @Input('p-hover') hover: string;
     @Input('p-title') title: string;
-    @Input('p-content') content: string | TemplateRef<PopoversDirectiveWindow>;
+    @Input('p-content') content: string;
     @Input('p-placement') placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
     private popoversEl: HTMLDivElement;
     private titleEl: HTMLHeadingElement;
@@ -124,17 +52,9 @@ export class PopoversDirective implements AfterViewInit {
             });
 
             this.renderer.listen(this.el.nativeElement, 'mouseleave', () => {
-                // if(this.clearTime && this.state == -1){
-                //     clearTimeout(this.clearTime);
-                //     this.popoversEl && document.body.removeChild(this.popoversEl);
-                //     this.tether && this.tether.destroy()
-                //     this.state = 0;
-                //     this.clearTime = 0;
-                // }
                 !this.stateFocus && this.close();
             });
         }
-
     }
 
     trigger() {
@@ -159,11 +79,9 @@ export class PopoversDirective implements AfterViewInit {
         if (this.popoversEl && this.state == 1) {
             this.state = -1;
             this.popoversEl.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(this.popoversEl);
-                this.tether && this.tether.destroy();
-                this.state = 0;
-            }, 150);
+            document.body.removeChild(this.popoversEl);
+            this.tether && this.tether.destroy();
+            this.state = 0;
         }
     }
 
@@ -179,12 +97,7 @@ export class PopoversDirective implements AfterViewInit {
         }
         let contentEl = this.contentEl = document.createElement('div');
         contentEl.classList.add('popover-content');
-
-        if (this.content instanceof TemplateRef) {
-            this.viewContainerRef.createEmbeddedView(this.content);
-        } else {
-            contentEl.innerHTML = this.content;
-        }
+        contentEl.innerHTML = this.content;
         popoversEl.appendChild(contentEl);
     }
 

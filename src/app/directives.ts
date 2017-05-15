@@ -1,7 +1,8 @@
-import {PopoversDirective} from "./directives/index";
+import {PopoversDirective, AlertDirective} from "./directives/index";
 
 const Directives = [
-    PopoversDirective
+    PopoversDirective,
+    // AlertDirective
 ]
 
 export {Directives}

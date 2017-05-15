@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Page} from "../model";
+import {AlertService} from "../directives/alert/alert.service";
 
 @Component({
     selector: 'app-index2',
@@ -54,4 +55,6 @@ export class Index2Component implements OnInit {
     add(){
         this.page.pageIndex += 1;
     }
+
+
 }

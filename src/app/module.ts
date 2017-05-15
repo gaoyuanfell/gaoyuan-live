@@ -7,17 +7,22 @@ import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModalService} from "./components/modal/modal.service";
 import {Pipes} from "../pipe/pipe";
+import {AlertModule} from "./directives/alert/alert.module";
 @NgModule({
     imports: [
         BrowserAnimationsModule,
         BrowserModule,
         CommonModule,
         FormsModule,
+
+        AlertModule,
     ],
     exports: [
         Components,
         Directives,
         Pipes,
+
+        AlertModule,
 
         BrowserAnimationsModule,
         BrowserModule,
@@ -25,7 +30,7 @@ import {Pipes} from "../pipe/pipe";
         FormsModule,
     ],
     declarations: [Pipes, Components, Directives],
-    providers: [ModalService]
+    providers: [ModalService],
 })
 export class Module {
 }
