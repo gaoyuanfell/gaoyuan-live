@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ModalService} from "./components/modal/modal.service";
 import {Pipes} from "../pipe/pipe";
 import {AlertModule} from "./directives/alert/alert.module";
+import {DatepickerModule} from "./components/datepicker/datepicker.module";
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -16,6 +17,7 @@ import {AlertModule} from "./directives/alert/alert.module";
         FormsModule,
 
         AlertModule,
+        DatepickerModule.forRoot(),
     ],
     exports: [
         Components,
@@ -23,6 +25,7 @@ import {AlertModule} from "./directives/alert/alert.module";
         Pipes,
 
         AlertModule,
+        DatepickerModule,
 
         BrowserAnimationsModule,
         BrowserModule,

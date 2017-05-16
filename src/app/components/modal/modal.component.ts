@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ContentChildren, ElementRef, Input, OnInit, Qu
 import {ModalService} from "./modal.service";
 
 @Component({
-    selector: 'app-modal',
+    selector: 'ngm-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.scss'],
 })

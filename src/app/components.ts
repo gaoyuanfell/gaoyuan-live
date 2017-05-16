@@ -1,9 +1,8 @@
-import {PagingComponent,ModalComponent,DatepickerComponent} from "./components/index";
+import {PagingComponent,ModalComponent} from "./components/index";
 
 const Components = [
     PagingComponent,
     ModalComponent,
-    DatepickerComponent
 ]
 
 export {Components}

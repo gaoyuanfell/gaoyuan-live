@@ -1,0 +1,30 @@
+:host {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.ngb-dp-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.ngb-dp-month {
+    pointer-events: none;
+}
+ngb-datepicker-month-view {
+    pointer-events: auto;
+}
+.ngb-dp-month:first-child {
+    margin-left: 0 !important;
+}
+.ngb-dp-month-name {
+    font-size: larger;
+    height: 2rem;
+    line-height: 2rem;
+}
+.btn-secondary {
+    color: #292b2c;
+    background-color: inherit;
+    border-color: #ccc;
+}
+.btn-secondary:hover {
+    color: #292b2c;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}

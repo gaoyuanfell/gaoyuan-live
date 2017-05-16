@@ -10,7 +10,7 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-    selector: 'app-paging',
+    selector: 'ngm-paging',
     templateUrl: './paging.component.html',
     styleUrls: ['./paging.component.scss'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
@@ -56,12 +56,12 @@ export class PagingComponent implements OnInit, ControlValueAccessor, OnChanges,
         }
     }
 
-    private page: Page<any> = $Storage('page', {}, {set: this.setPageIndex.bind(this)});
+    page: Page<any> = $Storage('page', {}, {set: this.setPageIndex.bind(this)});
 
     @Input() pageText: string = '...';
     @Input() pageShow: number = 3;
     pageList: PageData[];
-    private goNum: number;
+    goNum: number;
 
     @Output() goPage: EventEmitter<Page<any>> = new EventEmitter<Page<any>>();
 

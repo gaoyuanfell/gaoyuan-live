@@ -44,6 +44,8 @@ export class Index2Component implements OnInit {
         }
     };
 
+    model7;
+
     page: Page<any> = {
         totalPage: 120,
         pageIndex: 10,
@@ -56,5 +58,7 @@ export class Index2Component implements OnInit {
         this.page.pageIndex += 1;
     }
 
+    navigate(e){
 
+    }
 }

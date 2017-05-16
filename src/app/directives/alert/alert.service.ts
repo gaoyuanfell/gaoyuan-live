@@ -63,8 +63,8 @@ export class AlertService<T> {
 }
 
 @Directive({
-    selector: '[appAlert]',
-    exportAs: 'appAlert'
+    selector: '[ngmAlert]',
+    exportAs: 'ngmAlert'
 })
 export class AlertDirective {
     private _alertService: AlertService<AlertWindow>;

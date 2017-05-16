@@ -1,0 +1,19 @@
+.ngb-dp-weekday, .ngb-dp-week-number {
+    line-height: 2rem;
+}
+
+.ngb-dp-day, .ngb-dp-weekday, .ngb-dp-week-number {
+    width: 2rem;
+    height: 2rem;
+}
+
+.ngb-dp-day {
+    cursor: pointer;
+}
+
+.ngb-dp-day.disabled, .ngb-dp-day.hidden {
+    cursor: default;
+}
+.btn-secondary{
+    background-color: inherit;
+}

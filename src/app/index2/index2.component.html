@@ -2,7 +2,16 @@
 
 
     <div class="row h-50">
-        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+
+            <div id="asd" style="position: absolute;top: 12px;line-height: 1rem"></div>
+
+            <ngm-datepicker [(ngModel)]="model7" (navigate)="navigate($event)" [displayMonths]="1" [navigation]="'arrows'"></ngm-datepicker>
+            <!--<ngm-datepicker [(ngModel)]="model7" (navigate)="navigate($event)"></ngm-datepicker>-->
+            <!--<input type="text" ngmDatepicker #d="ngmDatepicker" class="form-control" name="datepicker" [(ngModel)]="model" (focus)="d.toggle()" >-->
+
+            {{model7 | json}}
+        </div>
         <div class="col-lg-6">
             <table class="table table-hover">
                 <thead>
@@ -34,7 +43,7 @@
                 </tr>
                 </tbody>
             </table>
-            <app-paging [(ngModel)]="page" (goPage)="go()"><i>1</i></app-paging>
+            <ngm-paging [(ngModel)]="page" (goPage)="go()"><i>1</i></ngm-paging>
 
             totalPage:<input class="form-control" type="text" [(ngModel)]="page.totalPage">
             pageIndex:<input class="form-control" type="text" [(ngModel)]="page.pageIndex">
@@ -42,43 +51,41 @@
         </div>
         <div class="col-lg-3">
 
-            <input type="text" class="form-control" name="datepicker" [(ngModel)]="model">
 
-            <!--<app-datepicker></app-datepicker>-->
 
-            <button class="btn btn-outline-danger" appAlert #pp="appAlert" (click)="pp.open()" [a-content]="'123123123'" [a-type]="'success'">alter</button>
+            <button class="btn btn-outline-danger" ngmAlert #pp="ngmAlert" (click)="pp.open()" [a-content]="'123123123'" [a-type]="'success'">alter</button>
             <span (click)="pp.close()">close</span>
 
             <button type="button" class="btn btn-primary" (click)="modal.show()">
                 show
             </button>
 
-            <a appPopovers #p="appPopovers" [p-placement]="'top'" [p-hover]="'hover'" [p-focus]="'focus'" [p-title]="'标题'" [p-content]="'你好呀！！！！！！！！！！！'" tabindex="-1" id="blur" class="btn btn-primary">blur</a>
+            <a ngmPopovers #p="ngmPopovers" [p-placement]="'top'" [p-hover]="'hover'" [p-focus]="'focus'" [p-title]="'标题'" [p-content]="'你好呀！！！！！！！！！！！'" tabindex="-1" id="blur" class="btn btn-primary">blur</a>
 
-            <app-modal [modal]="modal4">
+            <ngm-modal [modal]="modal4">
                 123123123
-            </app-modal>
+            </ngm-modal>
 
-            <app-modal [modal]="modal3">
+            <ngm-modal [modal]="modal3">
                 <button type="button" class="btn btn-primary" (click)="modal4.trigger()">
                     trigger4
                 </button>
-            </app-modal>
+            </ngm-modal>
 
-            <app-modal [modal]="modal2">
+            <ngm-modal [modal]="modal2">
                 <button type="button" class="btn btn-primary" (click)="modal3.trigger()">
                     trigger3
                 </button>
-            </app-modal>
+            </ngm-modal>
 
 
-            <app-modal [modal]="modal1">
+            <ngm-modal [modal]="modal1">
                 <button type="button" class="btn btn-primary" (click)="modal2.trigger()">
                     trigger2
                 </button>
-            </app-modal>
+            </ngm-modal>
 
-            <app-modal [modal]="modal">
+            <ngm-modal [modal]="modal">
                 <!--<button type="button" class="btn btn-primary" (click)="modal1.trigger()">
                     trigger1
                 </button>-->
@@ -115,7 +122,7 @@
                         <small class="text-muted">Donec id elit non mi porta.</small>
                     </a>
                 </div>
-            </app-modal>
+            </ngm-modal>
         </div>
     </div>
 </div>
