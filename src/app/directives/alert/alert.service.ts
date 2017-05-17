@@ -1,4 +1,4 @@
-import {Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, Directive, Injector, Input, Renderer2, ViewContainerRef, ViewRef} from "@angular/core";
+import {Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, Directive, EventEmitter, Injector, Input, Output, Renderer2, ViewContainerRef, ViewRef} from "@angular/core";
 
 export class ContentRef {
     constructor(public nodes: any[], public viewRef?: ViewRef, public componentRef?: ComponentRef<any>) {
@@ -12,7 +12,7 @@ export class ContentRef {
     },
     template: `
         <div [class]="'alert alert-dismissible alert-' + type">
-            <button type="button" class="close">
+            <button type="button" class="close" (click)="closeHandler()">
                 <span aria-hidden="true">&times;</span>
             </button>
             {{content}}
@@ -22,6 +22,11 @@ export class ContentRef {
 export class AlertWindow {
     @Input() content: string;
     @Input() type: string = 'success';
+    @Output() close = new EventEmitter<any>();
+
+    closeHandler(){
+        this.close.emit();
+    }
 }
 
 export class AlertService<T> {
@@ -31,6 +36,7 @@ export class AlertService<T> {
 
     constructor(type: any, private _injector: Injector, private _viewContainerRef: ViewContainerRef, private _renderer: Renderer2, componentFactoryResolver: ComponentFactoryResolver) {
         this._windowFactory = componentFactoryResolver.resolveComponentFactory<T>(type);
+        console.info(this._windowFactory.outputs)
     }
 
     open(content: string) {
@@ -72,6 +78,8 @@ export class AlertDirective {
 
     constructor(private _renderer: Renderer2, injector: Injector, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         this._alertService = new AlertService<AlertWindow>(AlertWindow, injector, viewContainerRef, _renderer, componentFactoryResolver);
+
+
     }
 
     @Input('a-content') content: string;
@@ -84,7 +92,9 @@ export class AlertDirective {
             this._windowRef = this._alertService.open(this.content);
             this._windowRef.instance.content = this.content;
             this._windowRef.instance.type = this.type;
-
+            this._windowRef.instance.close.subscribe( () => {
+                this.close();
+            } );
             this._time = setTimeout(() => {
                 this.close();
             }, this.time);

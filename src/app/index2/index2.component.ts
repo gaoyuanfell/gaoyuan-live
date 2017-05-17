@@ -44,7 +44,7 @@ export class Index2Component implements OnInit {
         }
     };
 
-    model7;
+    model7 = { year: 2017, month: 9, day: 7 };
 
     page: Page<any> = {
         totalPage: 120,

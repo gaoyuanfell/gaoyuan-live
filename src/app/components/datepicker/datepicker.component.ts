@@ -212,6 +212,7 @@ export class DatepickerComponent implements OnChanges, OnInit, ControlValueAcces
     }
 
     writeValue(value) {
+        if(value) { this.navigateTo(this._service.toValidDate(value, null)) }
         this.model = this._service.toValidDate(value, null);
     }
 

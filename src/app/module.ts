@@ -9,6 +9,10 @@ import {ModalService} from "./components/modal/modal.service";
 import {Pipes} from "../pipe/pipe";
 import {AlertModule} from "./directives/alert/alert.module";
 import {DatepickerModule} from "./components/datepicker/datepicker.module";
+
+
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -18,14 +22,17 @@ import {DatepickerModule} from "./components/datepicker/datepicker.module";
 
         AlertModule,
         DatepickerModule.forRoot(),
+        NgbModule.forRoot(),
     ],
     exports: [
         Components,
         Directives,
         Pipes,
+        NgbModule,
 
         AlertModule,
         DatepickerModule,
+
 
         BrowserAnimationsModule,
         BrowserModule,

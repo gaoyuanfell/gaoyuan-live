@@ -1,11 +1,16 @@
 import {Injectable} from '@angular/core';
 
-const WEEKDAYS_SHORT = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
-const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const MONTHS_FULL = [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November',
-    'December'
-];
+// const WEEKDAYS_SHORT = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+// const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// const MONTHS_FULL = [
+//     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November',
+//     'December'
+// ];
+
+const WEEKDAYS_SHORT = ['一', '二', '三', '四', '五', '六', '日'];
+const MONTHS_SHORT = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+const MONTHS_FULL = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+
 
 /**
  * Type of the service supplying month and weekday names to to NgbDatepicker component.
