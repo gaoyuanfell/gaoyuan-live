@@ -78,13 +78,11 @@ export class AlertDirective {
 
     constructor(private _renderer: Renderer2, injector: Injector, componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         this._alertService = new AlertService<AlertWindow>(AlertWindow, injector, viewContainerRef, _renderer, componentFactoryResolver);
-
-
     }
 
     @Input('a-content') content: string;
     @Input('a-type') type: string;
-    @Input('a-time') time: number = 2000;
+    @Input('a-time') time: number = 0;
     private _time;
 
     open() {
@@ -95,9 +93,11 @@ export class AlertDirective {
             this._windowRef.instance.close.subscribe( () => {
                 this.close();
             } );
-            this._time = setTimeout(() => {
-                this.close();
-            }, this.time);
+            if(this.time){
+                this._time = setTimeout(() => {
+                    this.close();
+                }, this.time * 1000);
+            }
         }else{
             this.close();
             this.open();

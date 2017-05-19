@@ -1,8 +1,6 @@
 import {NgModule} from "@angular/core";
 import {AlertDirective, AlertWindow} from "./alert.service";
 
-// export {AlertDirective} from './alert.service'
-
 @NgModule({
     declarations:[AlertDirective,AlertWindow],
     exports:[AlertDirective],
