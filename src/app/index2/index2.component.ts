@@ -61,4 +61,9 @@ export class Index2Component implements OnInit {
     navigate(e){
 
     }
+
+    search(e){
+        // console.info(e);
+        e.target.blur();
+    }
 }

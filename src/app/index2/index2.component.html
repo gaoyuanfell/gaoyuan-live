@@ -53,7 +53,7 @@
         </div>
         <div class="col-lg-3">
 
-
+            <input type="search" placeholder="search" (search)="search($event)">
 
             <button class="btn btn-outline-danger" ngmAlert #pp="ngmAlert" (click)="pp.open()" [a-content]="'123123123'" [a-type]="'success'">alter</button>
             <span (click)="pp.close()">close</span>

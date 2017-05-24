@@ -3,6 +3,6 @@ declare var module: NodeModule;
 interface NodeModule {
     id: string;
 }
-declare var AMap;
-declare var $;
-declare var Tether;
+declare const AMap;
+declare const $;
+declare const Tether;
