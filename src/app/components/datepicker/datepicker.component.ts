@@ -33,7 +33,7 @@ export interface NgmDatepickerNavigateEvent {
     exportAs: "ngmDatepicker",
     host: {'class': 'd-inline-block rounded'},
     templateUrl: './datepicker.component.html',
-    styleUrls: ['./datepicker.component.scss'],
+    styleUrls: ['./datepicker.component.less'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR, NgmDatepickerService],
 })
 export class DatepickerComponent implements OnChanges, OnInit, ControlValueAccessor {

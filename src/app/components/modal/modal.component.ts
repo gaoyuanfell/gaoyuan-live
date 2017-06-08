@@ -4,7 +4,7 @@ import {ModalService} from "./modal.service";
 @Component({
     selector: 'ngm-modal',
     templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.scss'],
+    styleUrls: ['./modal.component.less'],
 })
 export class ModalComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {

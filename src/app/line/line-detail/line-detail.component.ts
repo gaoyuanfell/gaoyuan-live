@@ -14,7 +14,7 @@ import {$Storage} from '../../storage';
 @Component({
     selector: 'app-line-detail',
     templateUrl: './line-detail.component.html',
-    styleUrls: ['./line-detail.component.scss'],
+    styleUrls: ['./line-detail.component.less'],
     providers: [LineService, LineSendService, CommentService, ReplyService]
 })
 export class LineDetailComponent implements OnInit {

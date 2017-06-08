@@ -1,16 +1,14 @@
 import {UserService} from './../../service/user.service';
 import {LineService} from './../../service/line.service';
 import {User, Line, Result, Page} from '../model';
-import {ActivatedRoute, Router, Data} from '@angular/router';
-import {FormGroup, FormControl} from '@angular/forms';
-import {Http} from '@angular/http';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 import {$Storage} from '../storage';
 
 @Component({
     selector: 'app-line',
     templateUrl: './line.component.html',
-    styleUrls: ['./line.component.scss'],
+    styleUrls: ['./line.component.less'],
     providers: [LineService, UserService]
 })
 export class LineComponent implements OnInit {

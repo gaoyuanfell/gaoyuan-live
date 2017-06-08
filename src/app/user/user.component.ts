@@ -7,7 +7,7 @@ import {fadeInLOutR} from '../../animations/fade-in-l-out-r'
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss'],
+    styleUrls: ['./user.component.less'],
     animations: [fadeInLOutR],
     providers: [UserService]
 })

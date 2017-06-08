@@ -5,7 +5,7 @@ import {AlertService} from "../directives/alert/alert.service";
 @Component({
     selector: 'app-index2',
     templateUrl: './index2.component.html',
-    styleUrls: ['./index2.component.scss'],
+    styleUrls: ['./index2.component.less'],
 })
 export class Index2Component implements OnInit {
 

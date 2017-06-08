@@ -3,7 +3,7 @@ import {NgmDateStruct} from './ngm-date-struct';
 
 @Component({
     selector: '[ngbDatepickerDayView]',
-    styleUrls:['./datepicker-day-view.scss'],
+    styleUrls:['./datepicker-day-view.less'],
     host: {
         '[class.bg-primary]': 'selected',
         '[class.text-white]': 'selected',

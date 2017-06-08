@@ -10,7 +10,7 @@ import {Branch, Line, Result, Page} from '../model';
 @Component({
     selector: 'app-branch',
     templateUrl: './branch.component.html',
-    styleUrls: ['./branch.component.scss'],
+    styleUrls: ['./branch.component.less'],
     providers: [LineService, BranchService, UploadService, CommentService]
 })
 export class BranchComponent implements OnInit {

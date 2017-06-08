@@ -12,7 +12,7 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
     selector: 'ngm-paging',
     templateUrl: './paging.component.html',
-    styleUrls: ['./paging.component.scss'],
+    styleUrls: ['./paging.component.less'],
     providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
     // host: {'class': 'asdasdasd'}
 })

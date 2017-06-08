@@ -15,7 +15,7 @@ export interface MonthViewModel {
 @Component({
     selector: 'ngb-datepicker-month-view',
     host: {'class': 'd-block'},
-    styleUrls: ['./datepicker-month-view.scss'],
+    styleUrls: ['./datepicker-month-view.less'],
     templateUrl: './datepicker-month-view.html',
 })
 export class NgmDatepickerMonthView {

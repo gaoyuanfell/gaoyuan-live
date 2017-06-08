@@ -5,7 +5,7 @@ import {Line, Page} from "./model";
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
+    styleUrls: ['./app.component.less'],
     animations: [fadeInLOutR],
     providers: []
 })

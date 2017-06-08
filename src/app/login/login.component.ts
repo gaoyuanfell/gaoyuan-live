@@ -7,7 +7,8 @@ import {Router} from "@angular/router";
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.less'],
+    providers: [UserService]
 })
 export class LoginComponent implements OnInit {
     user: User = $Storage('user');

@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
-    styleUrls: ['./index.component.scss'],
+    styleUrls: ['./index.component.less'],
     providers: [LineService]
 })
 export class IndexComponent implements OnInit {

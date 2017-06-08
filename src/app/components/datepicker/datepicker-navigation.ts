@@ -7,7 +7,7 @@ import {NgmCalendar} from './ngm-calendar';
 @Component({
     selector: 'ngb-datepicker-navigation',
     host: {'class': 'd-flex justify-content-between', '[class.collapsed]': '!showSelect'},
-    styleUrls:['./datepicker-navigation.scss'],
+    styleUrls:['./datepicker-navigation.less'],
     templateUrl:'./datepicker-navigation.html',
 })
 export class NgmDatepickerNavigation {
