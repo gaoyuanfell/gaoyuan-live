@@ -19,7 +19,7 @@
         "prefix": "app",
         "styles": [
             "../node_modules/bootstrap/dist/css/bootstrap.css",
-            "besic.less"
+            "styles.less"
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.slim.js",
@@ -53,7 +53,7 @@
         }
     },
     "defaults": {
-        "styleExt": "scss",
+        "styleExt": "less",
         "component": {}
     }
 }

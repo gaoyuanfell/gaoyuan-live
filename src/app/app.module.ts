@@ -7,37 +7,23 @@ import {AppRoutingModule} from './app-routing.module';
 
 /*拦截器*/
 import {httpInterceptor} from '../providers/Interceptor';
-import {Module} from "./module";
+import {IndexComponent} from './index/index.component';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
+import {BrowserModule} from "@angular/platform-browser";
 
-//模块
-import {MapModule} from './map/map.module';
-import {UserModule} from './user/user.module';
-import {LineModule} from './line/line.module';
-import {BranchModule} from './branch/branch.module';
-import {LoginModule} from "./login/login.module";
-import {IndexModule} from "./index/index.module";
-import {HomeModule} from "./home/home.module";
-import {Index2Module} from "./index2/index2.module";
-
-//瓦特法克
 @NgModule({
     declarations: [
         AppComponent,
+        IndexComponent,
+        HeaderComponent,
+        FooterComponent,
     ],
-    exports:[],
+    exports: [],
     imports: [
-        Module,
-        HttpModule,
+        BrowserModule,
         AppRoutingModule,
-
-        MapModule,
-        UserModule,
-        LineModule,
-        BranchModule,
-        LoginModule,
-        IndexModule,
-        Index2Module,
-        HomeModule
+        HttpModule,
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},
