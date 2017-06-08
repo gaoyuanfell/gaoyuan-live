@@ -11,6 +11,10 @@ import {IndexComponent} from './index/index.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {BrowserModule} from "@angular/platform-browser";
+import { SearchComponent } from './search/search.component';
+import { ExploreComponent } from './explore/explore.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { PersonalComponent } from './personal/personal.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +22,10 @@ import {BrowserModule} from "@angular/platform-browser";
         IndexComponent,
         HeaderComponent,
         FooterComponent,
+        SearchComponent,
+        ExploreComponent,
+        AccountsComponent,
+        PersonalComponent,
     ],
     exports: [],
     imports: [
