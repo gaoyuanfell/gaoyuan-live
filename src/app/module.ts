@@ -11,7 +11,7 @@ import {AlertModule} from "./directives/alert/alert.module";
 import {DatepickerModule} from "./components/datepicker/datepicker.module";
 
 
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+// import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     imports: [
@@ -22,13 +22,13 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
         AlertModule,
         DatepickerModule.forRoot(),
-        NgbModule.forRoot(),
+        // NgbModule.forRoot(),
     ],
     exports: [
         Components,
         Directives,
         Pipes,
-        NgbModule,
+        // NgbModule,
 
         AlertModule,
         DatepickerModule,
