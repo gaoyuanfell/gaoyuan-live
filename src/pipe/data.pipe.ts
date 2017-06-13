@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+/*import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
     name: 'data',
@@ -9,4 +9,4 @@ export class DataPipe implements PipeTransform {
         console.info(value);
         return value;
     }
-}
+}*/

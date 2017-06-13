@@ -1,7 +1,7 @@
-import {DataPipe} from './data.pipe';
+/*import {DataPipe} from './data.pipe';
 
 const Pipes = [
     DataPipe
 ]
 
-export {Pipes}
+export {Pipes}*/

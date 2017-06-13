@@ -6,6 +6,7 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
+        "build:github": "ng build -prod -d https://gaoyuanfell.github.io/gaoyuan-live/ -bh /gaoyuan-live",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
