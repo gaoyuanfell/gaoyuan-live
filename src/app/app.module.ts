@@ -34,7 +34,7 @@ import { PersonalComponent } from './personal/personal.component';
         HttpModule,
     ],
     providers: [
-        {provide: APP_BASE_HREF, useValue: '/'},
+        // {provide: APP_BASE_HREF, useValue: '/'},
         httpInterceptor,
     ],
     bootstrap: [AppComponent],
