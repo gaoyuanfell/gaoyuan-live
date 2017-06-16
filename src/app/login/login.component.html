@@ -1,0 +1,63 @@
+<div class="container-full">
+    <article class="flex">
+        <div class="body">
+            <div class="logo">
+                <img src="assets/img/logo.png" height="60">
+            </div>
+        </div>
+
+        <div *ngIf="isLogin">
+            <form [formGroup]="loginFrom" (submit)="login()" >
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="账户" formControlName="user">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" placeholder="密码" formControlName="password">
+                </div>
+                <div class="form-group">
+                    <button class="btn-primary btn w-100" type="submit">登录</button>
+                </div>
+            </form>
+
+            <div class="register text-center">
+                <p>
+                    没有帐户？
+                    <a href="javascript:void 0" (click)="isLogin = !isLogin">注册</a>
+                </p>
+            </div>
+        </div>
+
+        <div *ngIf="!isLogin">
+            <form [formGroup]="registerFrom" (submit)="register()">
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="手机" formControlName="phone">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="邮箱" formControlName="email">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="全名" formControlName="nickName">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="账户" formControlName="user">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" placeholder="密码" formControlName="password">
+                </div>
+                <div class="form-group">
+                    <button class="btn-primary btn w-100" type="submit">注册</button>
+                </div>
+            </form>
+
+            <div class="register text-center">
+                <p>
+                    有帐户了？？
+                    <a href="javascript:void 0" (click)="isLogin = !isLogin">请登录</a>
+                </p>
+            </div>
+        </div>
+
+
+    </article>
+</div>
+

@@ -22,9 +22,10 @@ export class HttpXHRBackend extends XHRBackend {
     }
 
     createConnection(request: Request): XHRConnection {
-        request.url = baseUrl + request.url;
+        // request.url = baseUrl + request.url;
         let token = window.localStorage.getItem("X-Token");
         token && request.headers.append("X-Token", token);
+        console.info(request.url)
         let xhrConnection = super.createConnection(request);
         xhrConnection.response = xhrConnection.response.catch((error) => {
             return Observable.throw(error || "Server Error");

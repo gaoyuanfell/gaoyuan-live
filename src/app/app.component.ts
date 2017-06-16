@@ -4,7 +4,6 @@ import {Component, OnInit, Renderer2} from '@angular/core';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.less'],
-    providers: []
 })
 export class AppComponent implements OnInit {
     constructor(private renderer: Renderer2) {

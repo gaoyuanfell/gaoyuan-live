@@ -5,6 +5,7 @@ import {SearchComponent} from "./search/search.component";
 import {ExploreComponent} from "./explore/explore.component";
 import {AccountsComponent} from "./accounts/accounts.component";
 import {PersonalComponent} from "./personal/personal.component";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
     {
@@ -31,6 +32,10 @@ const routes: Routes = [
     {
         path: 'personal',
         component: PersonalComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     }
 ];
 
