@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve -p 4200",
+        "start": "ng serve -p 4400",
         "build": "ng build",
         "build:github": "ng build -prod -d https://gaoyuanfell.github.io/gaoyuan-live/ -bh https://gaoyuanfell.github.io/gaoyuan-live/",
         "test": "ng test",
